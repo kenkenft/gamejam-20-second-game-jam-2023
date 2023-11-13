@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="MainGame" type="Node2D"]
+
+[node name="PlayerUI" type="Node" parent="."]
+
+[node name="Score" type="Node" parent="PlayerUI"]
+
+[node name="Timer" type="Node" parent="PlayerUI"]
+
+[node name="Multiplier" type="Node" parent="PlayerUI"]
+
+[node name="Basket" type="Node" parent="."]
+
+[node name="CurrentFruit" type="Node" parent="."]

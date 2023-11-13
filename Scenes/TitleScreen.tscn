@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="TitleScreen" type="Node2D"]
+
+[node name="MainMenu" type="Node" parent="."]
+
+[node name="Play" type="Button" parent="MainMenu"]
+margin_left = 67.0
+margin_top = 42.0
+margin_right = 79.0
+margin_bottom = 62.0
+
+[node name="HowToPlay" type="Button" parent="MainMenu"]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="Difficulty" type="Node" parent="."]
+
+[node name="HowToPlay" type="Node" parent="."]

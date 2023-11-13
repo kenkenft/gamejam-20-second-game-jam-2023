@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="ResultScreen" type="Node2D"]
+
+[node name="Text" type="Node" parent="."]
+
+[node name="Title" type="Node" parent="Text"]
+
+[node name="TotalScore" type="Node" parent="Text"]
+
+[node name="Mistakes" type="Node" parent="Text"]
+
+[node name="PlaySong" type="Node" parent="."]
+
+[node name="Replay" type="Node" parent="."]
+
+[node name="ReturnToTitleScreen" type="Node" parent="."]
