@@ -1,19 +1,109 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/ARIAL.TTF" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
 
 [node name="TitleScreen" type="Node2D"]
 
-[node name="MainMenu" type="Node" parent="."]
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Start" type="Button" parent="MainMenu"]
-margin_left = 67.0
-margin_top = 42.0
-margin_right = 79.0
-margin_bottom = 62.0
+margin_left = 393.0
+margin_top = 186.0
+margin_right = 517.0
+margin_bottom = 238.0
+custom_fonts/font = SubResource( 1 )
+text = "Start"
 
 [node name="HowToPlay" type="Button" parent="MainMenu"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_left = 385.0
+margin_top = 343.0
+margin_right = 558.0
+margin_bottom = 401.0
+custom_fonts/font = SubResource( 2 )
+text = "How to Play"
 
-[node name="Difficulty" type="Node" parent="."]
+[node name="DifficultySelect" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="HowToPlay" type="Node" parent="."]
+[node name="Easy" type="Button" parent="DifficultySelect"]
+margin_left = 136.0
+margin_top = 182.0
+margin_right = 260.0
+margin_bottom = 234.0
+custom_fonts/font = SubResource( 1 )
+text = "Easy"
+
+[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Easy"]
+margin_left = -13.0
+margin_top = 60.0
+margin_right = 133.0
+margin_bottom = 110.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Max fruits: 3
+Max multiplier: 4x"
+
+[node name="Medium" type="Button" parent="DifficultySelect"]
+margin_left = 355.0
+margin_top = 182.0
+margin_right = 479.0
+margin_bottom = 234.0
+custom_fonts/font = SubResource( 1 )
+text = "Medium"
+
+[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Medium"]
+margin_left = -13.0
+margin_top = 60.0
+margin_right = 133.0
+margin_bottom = 110.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Max fruits: 5
+Max multiplier: 8x"
+
+[node name="Hard" type="Button" parent="DifficultySelect"]
+margin_left = 618.0
+margin_top = 182.0
+margin_right = 742.0
+margin_bottom = 234.0
+custom_fonts/font = SubResource( 1 )
+text = "Hard"
+
+[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Hard"]
+margin_left = -13.0
+margin_top = 60.0
+margin_right = 133.0
+margin_bottom = 110.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Max fruits: 7
+Max multiplier: 12x"
+
+[node name="Back" type="Button" parent="DifficultySelect"]
+margin_left = 395.0
+margin_top = 307.0
+margin_right = 519.0
+margin_bottom = 359.0
+custom_fonts/font = SubResource( 1 )
+text = "Back"
+
+[node name="HowToPlay" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="MainGameArea" type="Node2D" parent="."]
+
+[node name="MainGame" parent="MainGameArea" instance=ExtResource( 1 )]

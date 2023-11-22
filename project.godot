@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Gamejam- 20 -second-game-jam- 2023"
+run/main_scene="res://Scenes/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [editor]
