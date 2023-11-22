@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/ARIAL.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/Fruit-v2.png" type="Texture" id=3]
+[ext_resource path="res://Basic.theme" type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=4]
+size = 72
+font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -14,14 +20,31 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 11
+font_data = ExtResource( 2 )
+
 [node name="TitleScreen" type="Node2D"]
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="Main" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 4 )
+
+[node name="Title" type="RichTextLabel" parent="Main"]
+margin_left = 196.0
+margin_top = 9.0
+margin_right = 834.0
+margin_bottom = 216.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Sorting Sonata"
+
+[node name="MainMenu" type="Control" parent="Main"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Start" type="Button" parent="MainMenu"]
+[node name="Start" type="Button" parent="Main/MainMenu"]
 margin_left = 393.0
 margin_top = 186.0
 margin_right = 517.0
@@ -29,7 +52,7 @@ margin_bottom = 238.0
 custom_fonts/font = SubResource( 1 )
 text = "Start"
 
-[node name="HowToPlay" type="Button" parent="MainMenu"]
+[node name="HowToPlay" type="Button" parent="Main/MainMenu"]
 margin_left = 385.0
 margin_top = 343.0
 margin_right = 558.0
@@ -37,11 +60,12 @@ margin_bottom = 401.0
 custom_fonts/font = SubResource( 2 )
 text = "How to Play"
 
-[node name="DifficultySelect" type="Control" parent="."]
+[node name="DifficultySelect" type="Control" parent="Main"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Easy" type="Button" parent="DifficultySelect"]
+[node name="Easy" type="Button" parent="Main/DifficultySelect"]
 margin_left = 136.0
 margin_top = 182.0
 margin_right = 260.0
@@ -49,7 +73,7 @@ margin_bottom = 234.0
 custom_fonts/font = SubResource( 1 )
 text = "Easy"
 
-[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Easy"]
+[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Easy"]
 margin_left = -13.0
 margin_top = 60.0
 margin_right = 133.0
@@ -58,7 +82,7 @@ custom_fonts/normal_font = SubResource( 3 )
 text = "Max fruits: 3
 Max multiplier: 4x"
 
-[node name="Medium" type="Button" parent="DifficultySelect"]
+[node name="Medium" type="Button" parent="Main/DifficultySelect"]
 margin_left = 355.0
 margin_top = 182.0
 margin_right = 479.0
@@ -66,7 +90,7 @@ margin_bottom = 234.0
 custom_fonts/font = SubResource( 1 )
 text = "Medium"
 
-[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Medium"]
+[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Medium"]
 margin_left = -13.0
 margin_top = 60.0
 margin_right = 133.0
@@ -75,7 +99,7 @@ custom_fonts/normal_font = SubResource( 3 )
 text = "Max fruits: 5
 Max multiplier: 8x"
 
-[node name="Hard" type="Button" parent="DifficultySelect"]
+[node name="Hard" type="Button" parent="Main/DifficultySelect"]
 margin_left = 618.0
 margin_top = 182.0
 margin_right = 742.0
@@ -83,7 +107,7 @@ margin_bottom = 234.0
 custom_fonts/font = SubResource( 1 )
 text = "Hard"
 
-[node name="DifficultyText" type="RichTextLabel" parent="DifficultySelect/Hard"]
+[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Hard"]
 margin_left = -13.0
 margin_top = 60.0
 margin_right = 133.0
@@ -92,18 +116,147 @@ custom_fonts/normal_font = SubResource( 3 )
 text = "Max fruits: 7
 Max multiplier: 12x"
 
-[node name="Back" type="Button" parent="DifficultySelect"]
-margin_left = 395.0
-margin_top = 307.0
-margin_right = 519.0
-margin_bottom = 359.0
+[node name="Back" type="Button" parent="Main/DifficultySelect"]
+margin_left = 443.0
+margin_top = 521.0
+margin_right = 567.0
+margin_bottom = 573.0
 custom_fonts/font = SubResource( 1 )
 text = "Back"
 
-[node name="HowToPlay" type="Control" parent="."]
+[node name="HowToPlay" type="Control" parent="Main"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="MainGameArea" type="Node2D" parent="."]
+[node name="Back" type="Button" parent="Main/HowToPlay"]
+margin_left = 442.0
+margin_top = 519.0
+margin_right = 566.0
+margin_bottom = 571.0
+custom_fonts/font = SubResource( 1 )
+text = "Back"
 
-[node name="MainGame" parent="MainGameArea" instance=ExtResource( 1 )]
+[node name="Fruit and keys" type="Node" parent="Main/HowToPlay"]
+
+[node name="Fruit" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 123.75, 416.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit2" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 247.75, 414.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit2"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit3" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 368.75, 416.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit3"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit4" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 492.75, 414.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit4"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit5" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 610.75, 417.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit5"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit6" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 731.75, 419.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit6"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="Fruit7" type="Sprite" parent="Main/HowToPlay/Fruit and keys"]
+position = Vector2( 855.75, 417.75 )
+scale = Vector2( 4.35938, 4.35938 )
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Letter" type="RichTextLabel" parent="Main/HowToPlay/Fruit and keys/Fruit7"]
+anchor_right = 0.441
+margin_left = -4.58781
+margin_top = 13.534
+margin_right = -7.69981
+margin_bottom = 28.534
+theme = ExtResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
+text = "F"
+
+[node name="MainGameArea" type="Node2D" parent="Main"]
+
+[node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
