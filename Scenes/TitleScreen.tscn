@@ -145,7 +145,6 @@ custom_fonts/font = SubResource( 1 )
 text = "Back"
 
 [node name="HowToPlay" type="Control" parent="Main"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -356,3 +355,5 @@ text = "K"
 [node name="MainGameArea" type="Node2D" parent="Main"]
 
 [node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
+
+[node name="PlayerData" type="Node2D" parent="."]
