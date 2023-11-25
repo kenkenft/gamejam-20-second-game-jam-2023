@@ -40,6 +40,7 @@ margin_bottom = 40.0
 theme = ExtResource( 4 )
 
 [node name="Title" type="RichTextLabel" parent="Main"]
+visible = false
 margin_left = 196.0
 margin_top = 9.0
 margin_right = 834.0
@@ -50,6 +51,7 @@ bbcode_text = "[center]Sonata of Sorting"
 text = "Sonata of Sorting"
 
 [node name="MainMenu" type="Control" parent="Main"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -145,6 +147,7 @@ custom_fonts/font = SubResource( 1 )
 text = "Back"
 
 [node name="HowToPlay" type="Control" parent="Main"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 

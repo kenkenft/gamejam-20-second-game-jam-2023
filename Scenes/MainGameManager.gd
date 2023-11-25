@@ -53,6 +53,8 @@ func CompareKeyToFruit(key):
 		SetUpCorrectFruit(currentFruit)
 	else:
 		SetUpInCorrectFruit()
+	
+	playerUI.UpdateText(str(currentMultiplier), "Multiplier")
 	audioStreamPlayer.play()
 
 func SetUpCorrectFruit(fruitID):
@@ -60,7 +62,7 @@ func SetUpCorrectFruit(fruitID):
 	
 	if(currentMultiplier < multiplierMax):
 		currentMultiplier += 1
-	#ToDo Update PlayerUI.Score and Multiplier
+	playerUI.UpdateText(str(currentScore), "Score")
 	audioStreamPlayer.stream = fruitSounds[fruitID]
 	CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
 
