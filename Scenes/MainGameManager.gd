@@ -1,10 +1,10 @@
 extends Node2D
 
-export var fruitSounds = [] #Index 0-6 are fruit sounds, index 7 is "Incorrect" sound 
+export var fruitSounds = [] #Index 0-6 are "Correct" fruit sounds, index 7 is "Incorrect" sound 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("CurrentFruit").SetNewFruit(1)
 
 #ToDo Set up table/dictionary for fruit ids and keyboard inputs
 #ToDo Check keyboard input against current fruit
