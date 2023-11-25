@@ -265,3 +265,5 @@ script = ExtResource( 7 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
 hframes = 7
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

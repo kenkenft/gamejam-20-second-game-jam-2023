@@ -9,6 +9,7 @@ var CurrentFruitObject
 var isPlaying = false
 var isCheckingInput = false
 var random = RandomNumberGenerator.new()
+var audioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,14 +28,21 @@ func _ready():
 
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
-		#isCheckingInput = true
+		isCheckingInput = true
 		
 		print(event.as_text())
 		if(inputToFruitId[event.scancode] == get_node("CurrentFruit").currentFruit):
+			audioStreamPlayer.stream = fruitSounds[get_node("CurrentFruit").currentFruit]
 			CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
+		else:
+			audioStreamPlayer.stream = fruitSounds[7]
+			
+		audioStreamPlayer.play()
+		isCheckingInput = false
 
 # ToDo: Set up game by difficulty
 func SetUp():
+	audioStreamPlayer = get_node("AudioStreamPlayer")
 	isPlaying = true
 	isCheckingInput = false
 	CurrentFruitObject = get_node("CurrentFruit")
