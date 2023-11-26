@@ -17,6 +17,7 @@ var playerUI
 
 var currentScore = 0
 var currentMultiplier = 1
+var currentTimer
 var multiplierMax
 
 
@@ -45,6 +46,9 @@ func SetUp():
 	isCheckingInput = false
 	CurrentFruitObject = get_node("CurrentFruit")
 	CurrentFruitObject.SetNewFruit(1)
+	currentTimer = get_node("Timer")
+	currentTimer.start(20.0)
+	playerUI.SetUp()
 
 func CompareKeyToFruit(key):
 	#print(key)
@@ -70,3 +74,9 @@ func SetUpInCorrectFruit():
 	currentMultiplier = 1
 	audioStreamPlayer.stream = fruitSounds[7]
 	#ToDo create yield/coroutine function that waits for 0.5 seconds
+
+
+func _on_Timer_timeout():
+	print("Time Up!")
+	#ToDo EndGame function
+	#ToDo Create event that sends out signal containing score, multipliers, mistakes etc
