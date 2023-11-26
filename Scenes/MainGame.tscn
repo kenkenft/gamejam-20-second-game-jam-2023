@@ -271,10 +271,12 @@ visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Baskets2"]
 layer = 9
+visible = false
 offset = Vector2( 512, 380 )
 transform = Transform2D( 1, 0, 0, 1, 512, 380 )
 
 [node name="CrateFig" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( 0, 70 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateFig"]
@@ -301,6 +303,7 @@ bbcode_text = "[center][b]Space"
 text = "Space"
 
 [node name="CrateCherry" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( -240, -130 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateCherry"]
@@ -327,6 +330,7 @@ bbcode_text = "[center][b]D"
 text = "D"
 
 [node name="CrateGrapefruit" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( 240, -130 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateGrapefruit"]
@@ -353,6 +357,7 @@ bbcode_text = "[center][b]J"
 text = "J"
 
 [node name="CrateDurian" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( -120, -260 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateDurian"]
@@ -379,6 +384,7 @@ bbcode_text = "[center][b]E"
 text = "E"
 
 [node name="CrateEgusi" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( 120, -260 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateEgusi"]
@@ -405,6 +411,7 @@ bbcode_text = "[center][b]U"
 text = "U"
 
 [node name="CrateBanana" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( -120, 0 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateBanana"]
@@ -431,6 +438,7 @@ bbcode_text = "[center][b]F"
 text = "F"
 
 [node name="CrateApple" type="Node2D" parent="Baskets2/CanvasLayer"]
+visible = false
 position = Vector2( 120, 0 )
 
 [node name="Fruit" type="Sprite" parent="Baskets2/CanvasLayer/CrateApple"]
@@ -454,6 +462,194 @@ custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center][b]H"
 text = "H"
+
+[node name="Baskets3" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Baskets3"]
+layer = 9
+offset = Vector2( 512, 380 )
+transform = Transform2D( 1, 0, 0, 1, 512, 380 )
+
+[node name="CrateFig" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( 0, 30 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateFig"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 5
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateFig"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateFig"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]Space"
+text = "Space"
+
+[node name="CrateCherry" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( -140, -130 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateCherry"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 2
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateCherry"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateCherry"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]D"
+text = "D"
+
+[node name="CrateGrapefruit" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( 140, -130 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateGrapefruit"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 6
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateGrapefruit"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateGrapefruit"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]J"
+text = "J"
+
+[node name="CrateDurian" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( -260, -200 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateDurian"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 3
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateDurian"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateDurian"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]W"
+text = "W"
+
+[node name="CrateEgusi" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( 260, -200 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateEgusi"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 4
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateEgusi"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateEgusi"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]I"
+text = "I"
+
+[node name="CrateBanana" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( -380, -130 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateBanana"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+frame = 1
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateBanana"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateBanana"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]A"
+text = "A"
+
+[node name="CrateApple" type="Node2D" parent="Baskets3/CanvasLayer"]
+position = Vector2( 380, -130 )
+
+[node name="Fruit" type="Sprite" parent="Baskets3/CanvasLayer/CrateApple"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 7
+
+[node name="Crate" type="Sprite" parent="Baskets3/CanvasLayer/CrateApple"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="Letter" type="RichTextLabel" parent="Baskets3/CanvasLayer/CrateApple"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center][b]L"
+text = "L"
 
 [node name="CurrentFruit" type="Node2D" parent="."]
 position = Vector2( 512, 250 )
