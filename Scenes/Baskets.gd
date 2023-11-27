@@ -3,7 +3,9 @@ extends Node2D
 export var Baskets = []
 
 #Indexes 2, 5 and 6 will always be shown
-var HideWhichBaskets = [[false, false, true, false, false, true, true], [false, false, true, true, true, true, true],[true, true, true, true, true, true, true]] 
+var HideWhichBaskets = [[false, false, true, false, false, true, true], 
+						[false, false, true, true, true, true, true],
+						[true, true, true, true, true, true, true]] 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

@@ -7,10 +7,21 @@ signal ShowCrateByDifficulty
 var acceptedInputActions = ["gameplay_sort_easy_v3", "gameplay_sort_medium_v3", "gameplay_sort_hard_v3"] # WASD and IJKL scheme. 
 var inputToFruitId = {KEY_L: 0, KEY_A: 1, KEY_D: 2, KEY_W: 3, KEY_I: 4, KEY_SPACE: 5, KEY_J: 6 }# WASD and IJKL scheme.
 
+# Note: the numbers in the arrays correspond to the fruit ids, and are not the proper notation for chord degrees. Assume C Major scale
+var chordProgressions = [
+	[2, 5, 6],	# Chords I IV V
+	[2, 4, 6],	# Chords I ii V
+	[2, 4, 5],	# Chords I iii IV
+	[2, 3, 4],	# Chords I ii iii
+	[4, 5, 0],	# Chords ii iii vii
+	[4, 6, 1],	# Chords ii IV vii
+	[2, 0, 1]	# Chords I vi vii
+]
 
 var multiplierLimits = [4, 8, 12]
 var allowedFruits = [3, 5, 7]
-var selectedDifficulty = 2
+var allowedChordProgressionRange = [1, 5, 7]
+var selectedDifficulty = 1
 
 var CurrentFruitObject
 var isPlaying = false
@@ -61,7 +72,8 @@ func SetUp():
 	isPlaying = true
 	isCheckingInput = false
 	CurrentFruitObject = get_node("CurrentFruit")
-	CurrentFruitObject.SetNewFruit(1)
+	#CurrentFruitObject.SetNewFruit(2)
+	CurrentFruitObject.SetNewFruit(selectNewFruitChord(2))
 	currentTimer = get_node("Timer")
 	currentTimer.start(20.0)
 	playerUI.SetUp()
@@ -76,29 +88,53 @@ func CompareKeyToFruit(key):
 	
 	playerUI.UpdateText(str(currentMultiplier), "Multiplier")
 
-func SetUpCorrectFruit(fruitID):
+func SetUpCorrectFruit(fruitId):
 	currentScore += 100 * currentMultiplier
 	
-	if(currentMultiplier < multiplierMax):
-		currentMultiplier += 1
-		if(highestMultiplier < currentMultiplier):
-			highestMultiplier = currentMultiplier
-	currentCombo += 1
-	if(longestCombo < currentCombo):
-		longestCombo = currentCombo
+	IncreaseMultiplier()
+	IncreaseCombo()
+	
 	playerUI.UpdateText(str(currentScore), "Score")
-	sortedFruits.append(fruitID)
-	print("Item " + str(sortedFruits.size()) +idToName[fruitID])
-	emit_signal("PlaySFX", fruitID)
-	CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
+	sortedFruits.append(fruitId)
+	#print("Item " + str(sortedFruits.size()) +idToName[fruitId])
+	emit_signal("PlaySFX", fruitId)
+	var newFruitId = selectNewFruitChord(fruitId)
+	#CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
+	CurrentFruitObject.SetNewFruit(newFruitId)
 
 func SetUpIncorrectFruit():
 	currentMultiplier = 1
 	mistakesCount += 1
+	currentCombo = 0
 	emit_signal("PlaySFX", 7)
 
+func IncreaseMultiplier():
+	if(currentMultiplier < multiplierMax):
+		currentMultiplier += 1
+		if(highestMultiplier < currentMultiplier):
+			highestMultiplier = currentMultiplier
+
+func IncreaseCombo():
+	currentCombo += 1
+	if(longestCombo < currentCombo):
+		longestCombo = currentCombo
 
 func _on_Timer_timeout():
 	print("Time Up!")
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
 	#ToDo EndGame function
+
+func selectNewFruitChord(currentFruitId):
+	var newFruitId
+	var potentialProgressions = []
+	
+	for i in range(0, allowedChordProgressionRange[selectedDifficulty]):
+		for j in range(0, chordProgressions[i].size()):
+			#print("Checking Chord set " + str(i) + ", Chord " + str(j))
+			if(chordProgressions[i][j] == currentFruitId):
+				#print("Chord progression Found! Set " + str(i))
+				potentialProgressions.append_array(chordProgressions[i])
+				#break
+			
+	newFruitId = potentialProgressions[random.randi() % potentialProgressions.size()] 
+	return newFruitId 
