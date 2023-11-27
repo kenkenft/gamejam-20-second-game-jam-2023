@@ -1,6 +1,7 @@
 extends Node2D
 
 signal PlaySFX
+signal TimeUp
 
 #var acceptedInputActions = ["gameplay_sort_easy", "gameplay_sort_medium", "gameplay_sort_hard"] # Linear, in a row keyset. Felt awkward to use
 #var acceptedInputActions = ["gameplay_sort_easy_v2", "gameplay_sort_medium_v2", "gameplay_sort_hard_v2"] # More circular key set. Still awkward
@@ -16,13 +17,19 @@ var isPlaying = false
 var isCheckingInput = false
 var random = RandomNumberGenerator.new()
 
+var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
+
 var playerUI
 
 var currentScore = 0
 var currentMultiplier = 1
+var highestMultiplier = 1
 var currentTimer
+var mistakesCount = 0
+var currentCombo = 0
+var longestCombo = 0
 var multiplierMax
-var SortedFruits
+var sortedFruits = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +50,12 @@ func SetUp():
 	playerUI = get_node("PlayerUI")
 	multiplierMax = multiplierLimits[selectedDifficulty]
 	currentScore = 0
+	mistakesCount = 0
+	currentMultiplier = 1
+	highestMultiplier = 1
+	currentCombo = 0
+	longestCombo = 0
+	sortedFruits.clear()
 	isPlaying = true
 	isCheckingInput = false
 	CurrentFruitObject = get_node("CurrentFruit")
@@ -66,17 +79,26 @@ func SetUpCorrectFruit(fruitID):
 	
 	if(currentMultiplier < multiplierMax):
 		currentMultiplier += 1
+		if(highestMultiplier < currentMultiplier):
+			highestMultiplier = currentMultiplier
+	currentCombo += 1
+	if(longestCombo < currentCombo):
+		longestCombo = currentCombo
 	playerUI.UpdateText(str(currentScore), "Score")
+	sortedFruits.append(fruitID)
+	print("Item " + str(sortedFruits.size()) +idToName[fruitID])
 	emit_signal("PlaySFX", fruitID)
 	CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
 
 func SetUpIncorrectFruit():
 	currentMultiplier = 1
+	mistakesCount += 1
 	emit_signal("PlaySFX", 7)
 	#ToDo create yield/coroutine function that waits for 0.5 seconds
 
 
 func _on_Timer_timeout():
 	print("Time Up!")
+	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
 	#ToDo EndGame function
 	#ToDo Create event that sends out signal containing score, multipliers, mistakes etc

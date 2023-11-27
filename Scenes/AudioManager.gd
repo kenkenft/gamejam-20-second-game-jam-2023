@@ -20,3 +20,7 @@ func PlayFruitSFX(fruitId):
 
 func _on_MainGame_PlaySFX(fruitId):
 	PlayFruitSFX(fruitId)
+
+
+func _on_PlayerData_PlaySFX(fruitId):
+	PlayFruitSFX(fruitId)
