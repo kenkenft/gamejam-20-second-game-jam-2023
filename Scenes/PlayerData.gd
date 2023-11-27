@@ -21,5 +21,8 @@ func _on_MainGame_TimeUp(currentScore, highestMultiplier, longestCombo, mistakes
 	print("Mistakes made:" + str(mistakesCount))
 	for i in range(0,sortedFruits.size()):
 		print("Item " + str(i) + idToName[sortedFruits[i]])
-		yield(get_tree().create_timer(0.25), "timeout")
+		if(i % 3 == 0):
+			yield(get_tree().create_timer(0.5), "timeout")
+		else:
+			yield(get_tree().create_timer(0.2), "timeout")
 		emit_signal("PlaySFX", sortedFruits[i])

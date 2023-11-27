@@ -136,5 +136,9 @@ func selectNewFruitChord(currentFruitId):
 				potentialProgressions.append_array(chordProgressions[i])
 				#break
 			
-	newFruitId = potentialProgressions[random.randi() % potentialProgressions.size()] 
+	if(selectedDifficulty != 0):
+		for i in range(0, 4):		
+			newFruitId = potentialProgressions[random.randi() % potentialProgressions.size()]
+			if(newFruitId != currentFruitId):
+				break 
 	return newFruitId 
