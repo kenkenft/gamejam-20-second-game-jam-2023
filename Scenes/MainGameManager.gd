@@ -1,6 +1,6 @@
 extends Node2D
 
-export var fruitSounds = [] #Index 0-6 are "Correct" fruit sounds, index 7 is "Incorrect" sound 
+signal PlaySFX
 
 #var acceptedInputActions = ["gameplay_sort_easy", "gameplay_sort_medium", "gameplay_sort_hard"] # Linear, in a row keyset. Felt awkward to use
 #var acceptedInputActions = ["gameplay_sort_easy_v2", "gameplay_sort_medium_v2", "gameplay_sort_hard_v2"] # More circular key set. Still awkward
@@ -15,7 +15,6 @@ var CurrentFruitObject
 var isPlaying = false
 var isCheckingInput = false
 var random = RandomNumberGenerator.new()
-var audioStreamPlayer
 
 var playerUI
 
@@ -23,6 +22,7 @@ var currentScore = 0
 var currentMultiplier = 1
 var currentTimer
 var multiplierMax
+var SortedFruits
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,8 +30,6 @@ func _ready():
 	SetUp()
 
 #ToDo Function that is called to set selectedDifficulty
-#ToDo Increase score and multiplier on correct button input
-#ToDo Reset multiplier on incorrect button input
 #ToDo Generate next fruit (based on chord progression and available fruits) 
 
 func _input(event):
@@ -42,7 +40,6 @@ func _input(event):
 
 # ToDo: Set up game by difficulty
 func SetUp():
-	audioStreamPlayer = get_node("AudioStreamPlayer")
 	playerUI = get_node("PlayerUI")
 	multiplierMax = multiplierLimits[selectedDifficulty]
 	currentScore = 0
@@ -60,10 +57,9 @@ func CompareKeyToFruit(key):
 	if(inputToFruitId[key] == currentFruit):
 		SetUpCorrectFruit(currentFruit)
 	else:
-		SetUpInCorrectFruit()
+		SetUpIncorrectFruit()
 	
 	playerUI.UpdateText(str(currentMultiplier), "Multiplier")
-	audioStreamPlayer.play()
 
 func SetUpCorrectFruit(fruitID):
 	currentScore += 100 * currentMultiplier
@@ -71,12 +67,12 @@ func SetUpCorrectFruit(fruitID):
 	if(currentMultiplier < multiplierMax):
 		currentMultiplier += 1
 	playerUI.UpdateText(str(currentScore), "Score")
-	audioStreamPlayer.stream = fruitSounds[fruitID]
+	emit_signal("PlaySFX", fruitID)
 	CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
 
-func SetUpInCorrectFruit():
+func SetUpIncorrectFruit():
 	currentMultiplier = 1
-	audioStreamPlayer.stream = fruitSounds[7]
+	emit_signal("PlaySFX", 7)
 	#ToDo create yield/coroutine function that waits for 0.5 seconds
 
 

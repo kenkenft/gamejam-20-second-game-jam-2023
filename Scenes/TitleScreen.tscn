@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
@@ -6,6 +6,15 @@
 [ext_resource path="res://Basic.theme" type="Theme" id=4]
 [ext_resource path="res://Scenes/PlayerData.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/GameManager.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/AudioManager.gd" type="Script" id=7]
+[ext_resource path="res://Audio/SFX/mutedGuitar-D.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/mutedGuitar-Wrong.wav" type="AudioStream" id=9]
+[ext_resource path="res://Audio/SFX/mutedGuitar-E.wav" type="AudioStream" id=10]
+[ext_resource path="res://Audio/SFX/mutedGuitar-G.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/SFX/mutedGuitar-A.wav" type="AudioStream" id=12]
+[ext_resource path="res://Audio/SFX/mutedGuitar-C.wav" type="AudioStream" id=13]
+[ext_resource path="res://Audio/SFX/mutedGuitar-B.wav" type="AudioStream" id=14]
+[ext_resource path="res://Audio/SFX/mutedGuitar-F.wav" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFont" id=4]
 size = 72
@@ -364,3 +373,9 @@ text = "K"
 
 [node name="PlayerData" type="Node2D" parent="."]
 script = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 7 )
+fruitSounds = [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 9 ) ]
+
+[connection signal="PlaySFX" from="Main/MainGameArea/MainGame" to="AudioStreamPlayer" method="_on_MainGame_PlaySFX"]
