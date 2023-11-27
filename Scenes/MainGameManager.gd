@@ -2,16 +2,16 @@ extends Node2D
 
 signal PlaySFX
 signal TimeUp
+signal ShowCrateByDifficulty
 
-#var acceptedInputActions = ["gameplay_sort_easy", "gameplay_sort_medium", "gameplay_sort_hard"] # Linear, in a row keyset. Felt awkward to use
-#var acceptedInputActions = ["gameplay_sort_easy_v2", "gameplay_sort_medium_v2", "gameplay_sort_hard_v2"] # More circular key set. Still awkward
 var acceptedInputActions = ["gameplay_sort_easy_v3", "gameplay_sort_medium_v3", "gameplay_sort_hard_v3"] # WASD and IJKL scheme. 
+var inputToFruitId = {KEY_L: 0, KEY_A: 1, KEY_D: 2, KEY_W: 3, KEY_I: 4, KEY_SPACE: 5, KEY_J: 6 }# WASD and IJKL scheme.
+
+
 var multiplierLimits = [4, 8, 12]
 var allowedFruits = [3, 5, 7]
 var selectedDifficulty = 2
-#var inputToFruitId = {KEY_L: 0, KEY_S: 1, KEY_F: 2, KEY_D: 3, KEY_K: 4, KEY_SPACE: 5, KEY_J: 6 } # Linear, in a row keyset. Felt awkward to use
-#var inputToFruitId = {KEY_H: 0, KEY_F: 1, KEY_D: 2, KEY_E: 3, KEY_U: 4, KEY_SPACE: 5, KEY_J: 6 } # More circular key set. Still awkward
-var inputToFruitId = {KEY_L: 0, KEY_A: 1, KEY_D: 2, KEY_W: 3, KEY_I: 4, KEY_SPACE: 5, KEY_J: 6 }# WASD and IJKL scheme.
+
 var CurrentFruitObject
 var isPlaying = false
 var isCheckingInput = false
@@ -43,10 +43,12 @@ func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
 		isCheckingInput = true
 		CompareKeyToFruit(event.scancode)
+		#yield(get_tree().create_timer(0.10), "timeout")
 		isCheckingInput = false
 
 # ToDo: Set up game by difficulty
 func SetUp():
+	emit_signal("ShowCrateByDifficulty", selectedDifficulty)
 	playerUI = get_node("PlayerUI")
 	multiplierMax = multiplierLimits[selectedDifficulty]
 	currentScore = 0
@@ -94,11 +96,9 @@ func SetUpIncorrectFruit():
 	currentMultiplier = 1
 	mistakesCount += 1
 	emit_signal("PlaySFX", 7)
-	#ToDo create yield/coroutine function that waits for 0.5 seconds
 
 
 func _on_Timer_timeout():
 	print("Time Up!")
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
 	#ToDo EndGame function
-	#ToDo Create event that sends out signal containing score, multipliers, mistakes etc

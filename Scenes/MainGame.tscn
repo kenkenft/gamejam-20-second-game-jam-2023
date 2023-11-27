@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Fruit-v2.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/MainGameManager.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/PlayerUI.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/CurrentFruit.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Baskets.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=2]
 size = 52
@@ -455,6 +456,8 @@ bbcode_text = "[center][b]H"
 text = "H"
 
 [node name="Baskets3" type="Node2D" parent="."]
+script = ExtResource( 8 )
+Baskets = [ NodePath("CanvasLayer/CrateApple"), NodePath("CanvasLayer/CrateBanana"), NodePath("CanvasLayer/CrateCherry"), NodePath("CanvasLayer/CrateDurian"), NodePath("CanvasLayer/CrateEgusi"), NodePath("CanvasLayer/CrateFig"), NodePath("CanvasLayer/CrateGrapefruit") ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Baskets3"]
 layer = 9
@@ -654,4 +657,5 @@ hframes = 7
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="ShowCrateByDifficulty" from="." to="Baskets3" method="_on_MainGame_ShowCrateByDifficulty"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
