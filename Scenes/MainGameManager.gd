@@ -13,7 +13,7 @@ var chordProgressions = [
 	[2, 4, 6],	# Chords I ii V
 	[2, 4, 5],	# Chords I iii IV
 	[2, 3, 4],	# Chords I ii iii
-	[4, 5, 0],	# Chords ii iii vii
+	[4, 5, 6],	# Chords ii iii vii
 	[4, 6, 1],	# Chords ii IV vii
 	[2, 0, 1]	# Chords I vi vii
 ]
@@ -35,11 +35,14 @@ var playerUI
 var currentScore = 0
 var currentMultiplier = 1
 var highestMultiplier = 1
+var multiplierMax
 var currentTimer
 var mistakesCount = 0
 var currentCombo = 0
 var longestCombo = 0
-var multiplierMax
+var currentChordSet
+var currentChordInSet = 0
+
 var sortedFruits = []
 
 
@@ -59,6 +62,7 @@ func _input(event):
 
 # ToDo: Set up game by difficulty
 func SetUp():
+	random.randomize()
 	emit_signal("ShowCrateByDifficulty", selectedDifficulty)
 	playerUI = get_node("PlayerUI")
 	multiplierMax = multiplierLimits[selectedDifficulty]
@@ -68,12 +72,13 @@ func SetUp():
 	highestMultiplier = 1
 	currentCombo = 0
 	longestCombo = 0
+	currentChordInSet = 0
 	sortedFruits.clear()
 	isPlaying = true
 	isCheckingInput = false
 	CurrentFruitObject = get_node("CurrentFruit")
 	#CurrentFruitObject.SetNewFruit(2)
-	CurrentFruitObject.SetNewFruit(selectNewFruitChord(2))
+	CurrentFruitObject.SetNewFruit(SelectNewFruitChord(2))
 	currentTimer = get_node("Timer")
 	currentTimer.start(20.0)
 	playerUI.SetUp()
@@ -98,7 +103,7 @@ func SetUpCorrectFruit(fruitId):
 	sortedFruits.append(fruitId)
 	#print("Item " + str(sortedFruits.size()) +idToName[fruitId])
 	emit_signal("PlaySFX", fruitId)
-	var newFruitId = selectNewFruitChord(fruitId)
+	var newFruitId = SelectNewFruitChord(fruitId)
 	#CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
 	CurrentFruitObject.SetNewFruit(newFruitId)
 
@@ -124,21 +129,30 @@ func _on_Timer_timeout():
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
 	#ToDo EndGame function
 
-func selectNewFruitChord(currentFruitId):
+func SelectNewFruitChord(currentFruitId):
 	var newFruitId
 	var potentialProgressions = []
 	
-	for i in range(0, allowedChordProgressionRange[selectedDifficulty]):
-		for j in range(0, chordProgressions[i].size()):
-			#print("Checking Chord set " + str(i) + ", Chord " + str(j))
-			if(chordProgressions[i][j] == currentFruitId):
-				#print("Chord progression Found! Set " + str(i))
-				potentialProgressions.append_array(chordProgressions[i])
-				#break
-			
-	if(selectedDifficulty != 0):
-		for i in range(0, 4):		
-			newFruitId = potentialProgressions[random.randi() % potentialProgressions.size()]
+	# Select next chord to play in current chord progression set
+	if(currentChordInSet < 3):
+		SelectNewChordProgression()
+		currentChordInSet = 0
+		
+	newFruitId = chordProgressions[currentChordSet][random.randi() % chordProgressions[currentChordSet].size()]
+	currentChordInSet += 1
+	
+	if(newFruitId == currentFruitId):
+		for i in range(0, 2):		
+			newFruitId = chordProgressions[currentChordSet][random.randi() % chordProgressions[currentChordSet].size()]
 			if(newFruitId != currentFruitId):
 				break 
 	return newFruitId 
+
+
+func SelectNewChordProgression():
+	if(selectedDifficulty != 0):
+		for i in range(0, 3):
+			var newChordSetId = random.randi() % allowedChordProgressionRange[selectedDifficulty]		
+			if(newChordSetId != currentChordSet):
+				currentChordSet = newChordSetId
+				break
