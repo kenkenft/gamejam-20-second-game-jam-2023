@@ -41,4 +41,5 @@ func UpdateVariableText(newText, showDefault, difficulty):
 
 
 func _on_TitleMenu_visibility_changed():
-	UpdateVariableText(defaultText, true, 2)
+	if(self.visible):
+		UpdateVariableText(defaultText, true, 2)

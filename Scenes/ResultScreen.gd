@@ -11,7 +11,7 @@ export(NodePath) var GameManager
 var fruits = []
 var finalScore = 0
 var difficulty
-
+var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
 #func _ready():
 	#get_node(Buttons[0]).connect("")
 #	# Set up node button references
@@ -34,6 +34,10 @@ func PlaySong():
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
 	fruits = sortedFruits
+	print("_on_PlayerData_UpdateResultScreen()")
+	for i in range(0, sortedFruits.size()):
+		print("Sorted fruit {0}: {1}".format([i, idToName[fruits[i]]]))
+		
 	difficulty = resultData[4]
 	PlaySong()
 	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])

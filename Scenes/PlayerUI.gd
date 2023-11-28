@@ -18,7 +18,7 @@ func SetUp():
 	currentTimer = get_node("../Timer")
 	#print(currentTimer.get_time_left())
 
-func _process(delta):
+func _process(_delta):
 #	while(!currentTimer.is_stopped()):
 	if(currentTimer != null):
 		if(!currentTimer.is_stopped()):

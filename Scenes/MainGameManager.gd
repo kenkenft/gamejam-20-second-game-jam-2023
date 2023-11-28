@@ -123,7 +123,6 @@ func IncreaseCombo():
 
 func SelectNewFruitChord(currentFruitId):
 	var newFruitId
-	var potentialProgressions = []
 	
 	# Select next chord to play in current chord progression set
 	if(currentChordInSet < 3):
@@ -152,4 +151,9 @@ func SelectNewChordProgression():
 				
 func _on_Timer_timeout():
 	isPlaying = false
+	
+	print("_on_Timer_timeout()")
+	for i in range(0, sortedFruits.size()):
+		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
+	
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits, multiplierLimits[selectedDifficulty])
