@@ -156,8 +156,10 @@ bbcode_enabled = true
 bbcode_text = "[b]0"
 text = "0"
 
-[node name="PlaySong" type="Node" parent="CanvasLayer"]
+[node name="Buttons" type="Node2D" parent="CanvasLayer"]
 
-[node name="Replay" type="Node" parent="CanvasLayer"]
+[node name="PlaySong" type="Control" parent="CanvasLayer/Buttons"]
 
-[node name="ReturnToTitleScreen" type="Node" parent="CanvasLayer"]
+[node name="ReplayCurrent" type="Control" parent="CanvasLayer/Buttons"]
+
+[node name="ReturnToTitleScreen" type="Control" parent="CanvasLayer/Buttons"]

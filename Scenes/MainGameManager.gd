@@ -45,13 +45,6 @@ var currentChordInSet = 0
 
 var sortedFruits = []
 
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	SetUp()
-
-#ToDo Function that is called to set selectedDifficulty
-
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
 		isCheckingInput = true
@@ -59,11 +52,15 @@ func _input(event):
 		#yield(get_tree().create_timer(0.10), "timeout")
 		isCheckingInput = false
 
-# ToDo: Set up game by difficulty
 func SetUp():
-	random.randomize()
 	emit_signal("ShowCrateByDifficulty", selectedDifficulty)
-	playerUI = get_node("PlayerUI")
+	GetNodesRefs()
+	ResetValues()
+	SetUpStartingFruit()
+	currentTimer.start(20.0)
+	playerUI.SetUp()
+
+func ResetValues():
 	multiplierMax = multiplierLimits[selectedDifficulty]
 	currentScore = 0
 	mistakesCount = 0
@@ -72,19 +69,21 @@ func SetUp():
 	currentCombo = 0
 	longestCombo = 0
 	currentChordInSet = 0
-	currentChordSet = random.randi() % allowedChordProgressionRange[selectedDifficulty]
 	sortedFruits.clear()
 	isPlaying = true
 	isCheckingInput = false
+
+func GetNodesRefs():
+	playerUI = get_node("PlayerUI")
 	CurrentFruitObject = get_node("CurrentFruit")
-	#CurrentFruitObject.SetNewFruit(2)
-	CurrentFruitObject.SetNewFruit(SelectNewFruitChord(2))
 	currentTimer = get_node("Timer")
-	currentTimer.start(20.0)
-	playerUI.SetUp()
+
+func SetUpStartingFruit():
+	random.randomize()
+	currentChordSet = random.randi() % allowedChordProgressionRange[selectedDifficulty]
+	CurrentFruitObject.SetNewFruit(SelectNewFruitChord(2))
 
 func CompareKeyToFruit(key):
-	#print(key)
 	var currentFruit = get_node("CurrentFruit").currentFruit
 	if(inputToFruitId[key] == currentFruit):
 		SetUpCorrectFruit(currentFruit)
@@ -101,10 +100,8 @@ func SetUpCorrectFruit(fruitId):
 	
 	playerUI.UpdateText(str(currentScore), "Score")
 	sortedFruits.append(fruitId)
-	#print("Item " + str(sortedFruits.size()) +idToName[fruitId])
 	emit_signal("PlaySFX", fruitId)
 	var newFruitId = SelectNewFruitChord(fruitId)
-	#CurrentFruitObject.SetNewFruit(random.randi_range(0,6))
 	CurrentFruitObject.SetNewFruit(newFruitId)
 
 func SetUpIncorrectFruit():
@@ -136,8 +133,9 @@ func SelectNewFruitChord(currentFruitId):
 	newFruitId = chordProgressions[currentChordSet][random.randi() % chordProgressions[currentChordSet].size()]
 	currentChordInSet += 1
 	
+	# Reduce the chance of having the same fruits consecutively
 	if(newFruitId == currentFruitId):
-		for i in range(0, 2):		
+		for i in range(0, 2):
 			newFruitId = chordProgressions[currentChordSet][random.randi() % chordProgressions[currentChordSet].size()]
 			if(newFruitId != currentFruitId):
 				break 
@@ -155,4 +153,3 @@ func SelectNewChordProgression():
 func _on_Timer_timeout():
 	isPlaying = false
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits, multiplierLimits[selectedDifficulty])
-	#ToDo EndGame function

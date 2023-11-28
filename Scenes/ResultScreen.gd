@@ -24,6 +24,7 @@ func PlaySong():
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
 	fruits = sortedFruits
+	PlaySong()
 	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])
 	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([resultData[1]])
 	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([resultData[2]])
