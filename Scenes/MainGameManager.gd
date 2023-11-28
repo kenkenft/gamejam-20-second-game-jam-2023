@@ -47,8 +47,8 @@ var sortedFruits = []
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	SetUp()
+#func _ready():
+#	SetUp()
 
 #ToDo Function that is called to set selectedDifficulty
 
@@ -72,6 +72,7 @@ func SetUp():
 	currentCombo = 0
 	longestCombo = 0
 	currentChordInSet = 0
+	currentChordSet = random.randi() % allowedChordProgressionRange[selectedDifficulty]
 	sortedFruits.clear()
 	isPlaying = true
 	isCheckingInput = false
@@ -124,7 +125,7 @@ func IncreaseCombo():
 		longestCombo = currentCombo
 
 func _on_Timer_timeout():
-	print("Time Up!")
+	isPlaying = false
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
 	#ToDo EndGame function
 

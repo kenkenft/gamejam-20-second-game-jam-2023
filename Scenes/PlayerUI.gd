@@ -20,8 +20,10 @@ func SetUp():
 
 func _process(delta):
 #	while(!currentTimer.is_stopped()):
-		UpdateText( str( stepify(currentTimer.get_time_left(), 0.1)), "Timer")
-		#UpdateText("Timer", str(1.0))
+	if(currentTimer != null):
+		if(!currentTimer.is_stopped()):
+			UpdateText( str( stepify(currentTimer.get_time_left(), 0.1)), "Timer")
+			#UpdateText("Timer", str(1.0))
 
 func UpdateText(var newText, var targetNode):
 	match targetNode:

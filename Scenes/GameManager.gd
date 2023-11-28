@@ -1,13 +1,15 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export var menus = [] # Assumes index positions: 0 - TitleScreen; 1 - MainGameArea; 2 - ResultScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	menus.append(get_node("Main/TitleMenu"))
+	menus.append(get_node("Main/MainGameArea/MainGame"))
+	#menus.append(get_node("Main/MainGameArea/ResultScreen"))
+	
+	ShowScreen(0)
+	
 	get_node("Main/TitleMenu/AllButtons/Easy").connect("OnDifficultySelected", self, "SetUpGame")
 	get_node("Main/TitleMenu/AllButtons/Medium").connect("OnDifficultySelected", self, "SetUpGame")
 	get_node("Main/TitleMenu/AllButtons/Hard").connect("OnDifficultySelected", self, "SetUpGame")
@@ -17,5 +19,18 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func ShowScreen(menuId):
+	var detectedMenus = menus.size()
+	if(menuId < detectedMenus):
+		for i in range(0, detectedMenus):
+			if(i != menuId):
+				menus[i].visible = false
+			else:
+				menus[i].visible = true
+
 func SetUpGame(difficulty):
-	print("Difficulty selected!")
+	#print("Difficulty selected!")
+	ShowScreen(1)
+	menus[1].selectedDifficulty = difficulty
+	menus[1].SetUp()
+	

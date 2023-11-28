@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/Fruit-v2.png" type="Texture" id=3]
-[ext_resource path="res://Basic.theme" type="Theme" id=4]
 [ext_resource path="res://Scenes/PlayerData.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/GameManager.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/AudioManager.gd" type="Script" id=7]
@@ -49,14 +48,9 @@ font_data = ExtResource( 20 )
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource( 6 )
 
-[node name="Main" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 4 )
+[node name="Main" type="Node2D" parent="."]
 
-[node name="TitleMenu" type="Control" parent="Main"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="TitleMenu" type="Node2D" parent="Main"]
 script = ExtResource( 18 )
 
 [node name="Title" type="RichTextLabel" parent="Main/TitleMenu"]
@@ -322,7 +316,6 @@ texture = ExtResource( 3 )
 hframes = 7
 
 [node name="MainGameArea" type="Node2D" parent="Main"]
-visible = false
 
 [node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
 
