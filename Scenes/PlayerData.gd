@@ -3,6 +3,7 @@ extends Node2D
 signal ShowDifferentMenu
 signal UpdateResultScreen
 signal ShowHighScores
+signal IndicateNewestHighScore
 
 var highScores = [0, 0, 0]
 var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
@@ -31,6 +32,7 @@ func _on_MainGame_TimeUp(currentScore, highestMultiplier, longestCombo, mistakes
 func _on_ResultScreen_UpdateHighScore(newScore, difficulty):
 	if(newScore > highScores[difficulty]):
 		highScores[difficulty] = newScore
+		emit_signal("IndicateNewestHighScore")
 
 
 func _on_TitleMenu_GetHighScores():

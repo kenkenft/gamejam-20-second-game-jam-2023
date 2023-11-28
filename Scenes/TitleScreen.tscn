@@ -374,5 +374,6 @@ fruitSounds = [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtReso
 [connection signal="TimeUp" from="Main/MainGameArea/MainGame" to="PlayerData" method="_on_MainGame_TimeUp"]
 [connection signal="PlaySFX" from="Main/ResultScreen" to="AudioStreamPlayer" method="_on_ResultScreen_PlaySFX"]
 [connection signal="UpdateHighScore" from="Main/ResultScreen" to="PlayerData" method="_on_ResultScreen_UpdateHighScore"]
+[connection signal="IndicateNewestHighScore" from="PlayerData" to="Main/ResultScreen" method="_on_PlayerData_IndicateNewestHighScore"]
 [connection signal="ShowHighScores" from="PlayerData" to="Main/TitleMenu" method="_on_PlayerData_ShowHighScores"]
 [connection signal="UpdateResultScreen" from="PlayerData" to="Main/ResultScreen" method="_on_PlayerData_UpdateResultScreen"]

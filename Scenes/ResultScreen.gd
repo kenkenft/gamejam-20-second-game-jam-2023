@@ -64,7 +64,8 @@ func SetBonusCombo(comboLength):
 	finalScore += comboBonus
 	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([comboLength])	# Longest combo
 	if(comboLength > 1):
-		get_node(BonusText[0]).bbcode_text = "[b][color=#18EE00]{0}[/color][/b] points!".format([comboBonus])
+		#Initially hide bonus text, then make it visible
+		get_node(BonusText[0]).bbcode_text = "[b][color=#18EE00]+{0}[/color][/b] points!".format([comboBonus])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 
 func SetBonusMultiplier(maxMultiplierAchieved):
@@ -73,7 +74,8 @@ func SetBonusMultiplier(maxMultiplierAchieved):
 	
 	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([maxMultiplierAchieved])	# Highest multiplier
 	if(maxMultiplierAchieved > 1):
-		get_node(BonusText[1]).bbcode_text = "[b][color=#18EE00]{0}[/color][/b] points!".format([bonus])
+		#Initially hide bonus text, then make it visible
+		get_node(BonusText[1]).bbcode_text = "[b][color=#18EE00]+{0}[/color][/b] points!".format([bonus])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 
 func SetBonusMistakes(mistakesMade, multiplierBonus):
@@ -81,12 +83,17 @@ func SetBonusMistakes(mistakesMade, multiplierBonus):
 	var bonusText = ""
 	if(mistakesMade == 0):
 		modifier = multiplierBonus * 100
-		bonusText = "[b][color=#18EE00]{0}[/color][/b] points!"
+		bonusText = "[b][color=#18EE00]+{0}[/color][/b] points!"
 	else:
 		modifier = mistakesMade * -100
-		bonusText = "[b][color=#EF0000]{0}[/color][/b] points!"
+		bonusText = "[b][color=#EF0000]-{0}[/color][/b] points!"
 		
 	finalScore += modifier
 	get_node(DynamicText[3]).bbcode_text = "[b]{0}[/b]".format([mistakesMade]) # Mistakes
+	#Initially hide bonus text, then make it visible
 	get_node(BonusText[2]).bbcode_text = bonusText.format([modifier])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
+
+
+func _on_PlayerData_IndicateNewestHighScore():
+	get_node(BonusText[3]).bbcode_text = "[b][color=#18EE00]New High Score![/color][/b]"
