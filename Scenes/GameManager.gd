@@ -6,7 +6,7 @@ export var menus = [] # Assumes index positions: 0 - TitleScreen; 1 - MainGameAr
 func _ready():
 	menus.append(get_node("Main/TitleMenu"))
 	menus.append(get_node("Main/MainGameArea/MainGame"))
-	menus.append(get_node("Main/MainGameArea/ResultScreen"))
+	menus.append(get_node("Main/ResultScreen"))
 	
 	get_node("Main/TitleMenu/AllButtons/Easy").connect("OnDifficultySelected", self, "SetUpGame")
 	get_node("Main/TitleMenu/AllButtons/Medium").connect("OnDifficultySelected", self, "SetUpGame")
@@ -27,12 +27,13 @@ func ShowMenu(menuId):
 		for i in range(0, detectedMenus):
 			if(i != menuId):
 				menus[i].visible = false
+				print(str(i) + " is hidden")
 			else:
 				menus[i].visible = true
+				print(str(i) + " is visible")
 
 func SetUpGame(difficulty):
 	#print("Difficulty selected!")
 	ShowMenu(1)
 	menus[1].selectedDifficulty = difficulty
 	menus[1].SetUp()
-	

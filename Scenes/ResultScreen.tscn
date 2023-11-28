@@ -20,7 +20,7 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 DynamicText = [ NodePath("CanvasLayer/Text/Results/Score/Dynamic"), NodePath("CanvasLayer/Text/Results/Combo/Dynamic"), NodePath("CanvasLayer/Text/Results/Multiplier/Dynamic"), NodePath("CanvasLayer/Text/Results/Mistakes/Dynamic"), NodePath("CanvasLayer/Text/Results/FinalScore/Dynamic") ]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="Node2D" parent="."]
 
 [node name="Text" type="Control" parent="CanvasLayer"]
 rect_pivot_offset = Vector2( 122, 64 )
