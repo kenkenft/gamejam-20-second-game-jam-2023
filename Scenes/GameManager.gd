@@ -13,7 +13,7 @@ func _ready():
 	get_node("Main/TitleMenu/AllButtons/Hard").connect("OnDifficultySelected", self, "SetUpGame")
 	
 	get_node("PlayerData").connect("ShowDifferentMenu", self, "ShowMenu")
-	# get_node("node_path_to_ResultScreen_buttons").connect("ShowDifferentMenu", self, "ShowMenu")
+	get_node("Main/ResultScreen").connect("ShowDifferentMenu", self, "ShowMenu")
 	
 	ShowMenu(0)
 
@@ -27,10 +27,8 @@ func ShowMenu(menuId):
 		for i in range(0, detectedMenus):
 			if(i != menuId):
 				menus[i].visible = false
-				print(str(i) + " is hidden")
 			else:
 				menus[i].visible = true
-				print(str(i) + " is visible")
 
 func SetUpGame(difficulty):
 	#print("Difficulty selected!")

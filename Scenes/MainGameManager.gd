@@ -57,7 +57,7 @@ func SetUp():
 	GetNodesRefs()
 	ResetValues()
 	SetUpStartingFruit()
-	currentTimer.start(20.0)
+	currentTimer.start(5.0)
 	playerUI.SetUp()
 
 func ResetValues():

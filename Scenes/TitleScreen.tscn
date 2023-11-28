@@ -321,6 +321,7 @@ hframes = 7
 [node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
 
 [node name="ResultScreen" parent="Main" instance=ExtResource( 4 )]
+GameManager = NodePath("../..")
 
 [node name="PlayerData" type="Node2D" parent="."]
 script = ExtResource( 5 )

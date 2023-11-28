@@ -2,10 +2,20 @@ extends Node2D
 
 signal PlaySFX
 signal UpdateHighScore
+signal ShowDifferentMenu
+
 export var DynamicText = []
+export var Buttons = []
+export(NodePath) var GameManager
 
 var fruits = []
 var finalScore = 0
+var difficulty
+
+#func _ready():
+	#get_node(Buttons[0]).connect("")
+#	# Set up node button references
+	# emit_signal("ShowDifferentMenu", 2)
 
 func SetUp():
 	fruits.clear()
@@ -24,10 +34,23 @@ func PlaySong():
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
 	fruits = sortedFruits
+	difficulty = resultData[4]
 	PlaySong()
 	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])
 	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([resultData[1]])
 	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([resultData[2]])
 	get_node(DynamicText[3]).bbcode_text = "[b]{0}[/b]".format([resultData[3]])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([resultData[0]])
-	pass # Replace with function body.
+	#Store score against highscore emit_signal("UpdateHighScore", finalScore, difficulty)
+
+
+func _on_PlaySong_pressed():
+	PlaySong()
+
+
+func _on_Replay_pressed():
+	get_node(GameManager).SetUpGame(difficulty)
+
+
+func _on_TitleScreen_pressed():
+	emit_signal("ShowDifferentMenu", 0)
