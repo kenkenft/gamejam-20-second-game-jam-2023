@@ -5,6 +5,7 @@ signal UpdateHighScore
 signal ShowDifferentMenu
 
 export var DynamicText = []
+export var BonusText = []
 export var Buttons = []
 export(NodePath) var GameManager
 
@@ -33,23 +34,17 @@ func PlaySong():
 #				mistakesCount, selectedDifficulty, multiplierLimits]
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
-#	print("ResultsScreen - sortedFruits array")
-#	for i in range(0, sortedFruits.size()):
-#		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
 	
-	fruits.append_array(sortedFruits)
-	
-#	print("ResultsScreen - fruits array")
-#	for i in range(0, sortedFruits.size()):
-#		print("Sorted fruit {0}: {1}".format([i, idToName[fruits[i]]]))
-		
+	fruits.append_array(sortedFruits)	
 	difficulty = resultData[4]
+	finalScore = resultData[0]
+	
 	PlaySong()
-	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])
-	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([resultData[1]])
-	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([resultData[2]])
-	get_node(DynamicText[3]).bbcode_text = "[b]{0}[/b]".format([resultData[3]])
-	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([resultData[0]])
+	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])	# Initial score
+	SetBonusCombo(resultData[1])
+	SetBonusMultiplier(resultData[2])
+	SetBonusMistakes(resultData[3], resultData[5])
+	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 	#Store score against highscore emit_signal("UpdateHighScore", finalScore, difficulty)
 
 
@@ -63,3 +58,29 @@ func _on_Replay_pressed():
 
 func _on_TitleScreen_pressed():
 	emit_signal("ShowDifferentMenu", 0)
+
+func SetBonusCombo(comboLength):
+	var comboBonus = comboLength * 50
+	finalScore += comboBonus
+	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([comboLength])	# Longest combo
+	# Set text for combo bonus
+	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
+
+func SetBonusMultiplier(maxMultiplierAchieved):
+	var bonus = (maxMultiplierAchieved - 1) * 100
+	finalScore += bonus
+	
+	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([maxMultiplierAchieved])	# Highest multiplier
+	# Set text for multiplier bonus
+	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
+
+func SetBonusMistakes(mistakesMade, multiplierBonus):
+	var modifier = 0
+	if(mistakesMade > 0):
+		modifier = multiplierBonus * 100
+	else:
+		modifier = mistakesMade * -100
+		
+	get_node(DynamicText[3]).bbcode_text = "[b]{0}[/b]".format([mistakesMade]) # Mistakes
+	# Set text for mistakes bonus/penalties
+	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
