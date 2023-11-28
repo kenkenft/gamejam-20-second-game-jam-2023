@@ -18,15 +18,12 @@ func _ready():
 
 func _on_DifficultyText_mouse_entered():
 	var helpText = "[center]{0} difficulty\nExpected number of fruits: {1}\nMaximum multiplier: {2}".format([buttonLabels[difficulty], expectedFruits[difficulty], expectedMaxMultiplier[difficulty]])
-#	print(helpText)
 	emit_signal("OnDifficultyMouseEnter", helpText, false, difficulty)
 
 
 func _on_DifficultyText_mouse_exited():
-#	print("Mouse exited")
 	emit_signal("OnDifficultyMouseExit", "", true, 2)
 
 
 func _on_DifficultyText_pressed():
-	print("{0} difficulty selected".format([buttonLabels[difficulty]]))
 	emit_signal("OnDifficultySelected", difficulty)
