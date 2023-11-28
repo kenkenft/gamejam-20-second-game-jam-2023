@@ -44,7 +44,7 @@ func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetBonusCombo(resultData[1])
 	SetBonusMultiplier(resultData[2])
 	SetBonusMistakes(resultData[3], resultData[5])
-	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
+	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b] points".format([finalScore]) # Final score after bonuses/penalties
 	#Store score against highscore emit_signal("UpdateHighScore", finalScore, difficulty)
 
 
@@ -63,24 +63,30 @@ func SetBonusCombo(comboLength):
 	var comboBonus = comboLength * 50
 	finalScore += comboBonus
 	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([comboLength])	# Longest combo
-	# Set text for combo bonus
+	if(comboLength > 1):
+		get_node(BonusText[0]).bbcode_text = "[b][color=#18EE00]{0}[/color][/b] points!".format([comboBonus])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 
 func SetBonusMultiplier(maxMultiplierAchieved):
-	var bonus = (maxMultiplierAchieved - 1) * 100
+	var bonus = (maxMultiplierAchieved) * 100
 	finalScore += bonus
 	
 	get_node(DynamicText[2]).bbcode_text = "[b]{0}[/b]".format([maxMultiplierAchieved])	# Highest multiplier
-	# Set text for multiplier bonus
+	if(maxMultiplierAchieved > 1):
+		get_node(BonusText[1]).bbcode_text = "[b][color=#18EE00]{0}[/color][/b] points!".format([bonus])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 
 func SetBonusMistakes(mistakesMade, multiplierBonus):
 	var modifier = 0
-	if(mistakesMade > 0):
+	var bonusText = ""
+	if(mistakesMade == 0):
 		modifier = multiplierBonus * 100
+		bonusText = "[b][color=#18EE00]{0}[/color][/b] points!"
 	else:
 		modifier = mistakesMade * -100
+		bonusText = "[b][color=#EF0000]{0}[/color][/b] points!"
 		
+	finalScore += modifier
 	get_node(DynamicText[3]).bbcode_text = "[b]{0}[/b]".format([mistakesMade]) # Mistakes
-	# Set text for mistakes bonus/penalties
+	get_node(BonusText[2]).bbcode_text = bonusText.format([modifier])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties

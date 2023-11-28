@@ -23,6 +23,7 @@ font_data = ExtResource( 1 )
 [node name="ResultScreen" type="Node2D"]
 script = ExtResource( 3 )
 DynamicText = [ NodePath("CanvasLayer/Text/Results/Score/Dynamic"), NodePath("CanvasLayer/Text/Results/Combo/Dynamic"), NodePath("CanvasLayer/Text/Results/Multiplier/Dynamic"), NodePath("CanvasLayer/Text/Results/Mistakes/Dynamic"), NodePath("CanvasLayer/Text/Results/FinalScore/Dynamic") ]
+BonusText = [ NodePath("CanvasLayer/Text/Results/Combo/Bonus"), NodePath("CanvasLayer/Text/Results/Multiplier/Bonus"), NodePath("CanvasLayer/Text/Results/Mistakes/Bonus") ]
 
 [node name="CanvasLayer" type="Node2D" parent="."]
 
@@ -91,6 +92,17 @@ bbcode_enabled = true
 bbcode_text = "[b]0"
 text = "0"
 
+[node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Combo"]
+margin_left = 650.0
+margin_top = 20.0
+margin_right = 950.0
+margin_bottom = 60.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]0"
+text = "0"
+
 [node name="Multiplier" type="Control" parent="CanvasLayer/Text/Results"]
 margin_top = 100.0
 margin_bottom = 100.0
@@ -114,6 +126,17 @@ bbcode_enabled = true
 bbcode_text = "[b]0"
 text = "0"
 
+[node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Multiplier"]
+margin_left = 650.0
+margin_top = 20.0
+margin_right = 950.0
+margin_bottom = 60.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]0"
+text = "0"
+
 [node name="Mistakes" type="Control" parent="CanvasLayer/Text/Results"]
 margin_top = 150.0
 margin_bottom = 150.0
@@ -131,6 +154,17 @@ text = "Mistakes made:"
 margin_left = 440.0
 margin_right = 840.0
 margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[b]0"
+text = "0"
+
+[node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Mistakes"]
+margin_left = 650.0
+margin_top = 20.0
+margin_right = 950.0
+margin_bottom = 60.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
