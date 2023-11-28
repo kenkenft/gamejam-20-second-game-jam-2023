@@ -18,8 +18,10 @@ func _on_TitleMenu_UpdateBasketVisibility(difficulty):
 	selectedDifficulty = difficulty
 
 func _on_MainGame_TimeUp(currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits, multiplierLimits):
-	print("_on_MainGame_TimeUp")
-	for i in range(0, sortedFruits.size()):
-		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
+	
 	emit_signal("ShowDifferentMenu", 2)
+	
+#	print("PlayerData area")
+#	for i in range(0, sortedFruits.size()):
+#		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
 	emit_signal("UpdateResultScreen", [currentScore, longestCombo, highestMultiplier, mistakesCount, selectedDifficulty, multiplierLimits], sortedFruits)	

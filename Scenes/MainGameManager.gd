@@ -152,8 +152,8 @@ func SelectNewChordProgression():
 func _on_Timer_timeout():
 	isPlaying = false
 	
-	print("_on_Timer_timeout()")
-	for i in range(0, sortedFruits.size()):
-		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
+#	print("Main Game - _on_Timer_timeout()")
+#	for i in range(0, sortedFruits.size()):
+#		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
 	
 	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits, multiplierLimits[selectedDifficulty])

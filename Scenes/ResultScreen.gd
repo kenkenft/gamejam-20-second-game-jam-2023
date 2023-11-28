@@ -33,10 +33,15 @@ func PlaySong():
 #				mistakesCount, selectedDifficulty, multiplierLimits]
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
-	fruits = sortedFruits
-	print("_on_PlayerData_UpdateResultScreen()")
-	for i in range(0, sortedFruits.size()):
-		print("Sorted fruit {0}: {1}".format([i, idToName[fruits[i]]]))
+#	print("ResultsScreen - sortedFruits array")
+#	for i in range(0, sortedFruits.size()):
+#		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
+	
+	fruits.append_array(sortedFruits)
+	
+#	print("ResultsScreen - fruits array")
+#	for i in range(0, sortedFruits.size()):
+#		print("Sorted fruit {0}: {1}".format([i, idToName[fruits[i]]]))
 		
 	difficulty = resultData[4]
 	PlaySong()
