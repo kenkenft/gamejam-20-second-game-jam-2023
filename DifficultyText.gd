@@ -2,6 +2,7 @@ extends Control
 
 signal OnDifficultyMouseEnter
 signal OnDifficultyMouseExit
+signal OnDifficultySelected
 
 export(int) var difficulty # 0 - Easy; 1 - Medium; 2 - Hard
 var expectedFruits = [3, 5, 7] # Easy - 3; Medium - 5; Hard - 7
@@ -24,3 +25,8 @@ func _on_DifficultyText_mouse_entered():
 func _on_DifficultyText_mouse_exited():
 #	print("Mouse exited")
 	emit_signal("OnDifficultyMouseExit", "", true, 2)
+
+
+func _on_DifficultyText_pressed():
+	print("{0} difficulty selected".format([buttonLabels[difficulty]]))
+	emit_signal("OnDifficultySelected", difficulty)
