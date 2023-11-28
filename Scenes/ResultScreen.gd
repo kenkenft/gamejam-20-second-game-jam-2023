@@ -45,7 +45,7 @@ func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetBonusMultiplier(resultData[2])
 	SetBonusMistakes(resultData[3], resultData[5])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b] points".format([finalScore]) # Final score after bonuses/penalties
-	#Store score against highscore emit_signal("UpdateHighScore", finalScore, difficulty)
+	emit_signal("UpdateHighScore", finalScore, difficulty)
 
 
 func _on_PlaySong_pressed():

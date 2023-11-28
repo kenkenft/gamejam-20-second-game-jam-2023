@@ -2,6 +2,7 @@ extends Node2D
 
 signal ShowDifferentMenu
 signal UpdateResultScreen
+signal ShowHighScores
 
 var highScores = [0, 0, 0]
 var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
@@ -25,3 +26,12 @@ func _on_MainGame_TimeUp(currentScore, highestMultiplier, longestCombo, mistakes
 #	for i in range(0, sortedFruits.size()):
 #		print("Sorted fruit {0}: {1}".format([i, idToName[sortedFruits[i]]]))
 	emit_signal("UpdateResultScreen", [currentScore, longestCombo, highestMultiplier, mistakesCount, selectedDifficulty, multiplierLimits], sortedFruits)	
+
+
+func _on_ResultScreen_UpdateHighScore(newScore, difficulty):
+	if(newScore > highScores[difficulty]):
+		highScores[difficulty] = newScore
+
+
+func _on_TitleMenu_GetHighScores():
+	emit_signal("ShowHighScores", highScores)

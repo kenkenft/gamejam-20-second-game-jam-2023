@@ -53,6 +53,7 @@ script = ExtResource( 6 )
 
 [node name="TitleMenu" type="Node2D" parent="Main"]
 script = ExtResource( 18 )
+HighScores = [ NodePath("AllButtons/HighScores/Easy"), NodePath("AllButtons/HighScores/Medium"), NodePath("AllButtons/HighScores/Hard") ]
 
 [node name="Title" type="RichTextLabel" parent="Main/TitleMenu"]
 margin_left = 196.0
@@ -82,6 +83,41 @@ difficulty = 1
 margin_left = 708.0
 margin_right = 708.0
 difficulty = 2
+
+[node name="HighScores" type="Control" parent="Main/TitleMenu/AllButtons"]
+margin_left = 160.0
+margin_top = 65.0
+margin_right = 200.0
+margin_bottom = 105.0
+
+[node name="Easy" type="RichTextLabel" parent="Main/TitleMenu/AllButtons/HighScores"]
+margin_right = 200.0
+margin_bottom = 60.0
+custom_fonts/bold_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]0 points"
+text = "0 points"
+
+[node name="Medium" type="RichTextLabel" parent="Main/TitleMenu/AllButtons/HighScores"]
+margin_left = 237.0
+margin_right = 477.0
+margin_bottom = 60.0
+custom_fonts/bold_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]0 points"
+text = "0 points"
+
+[node name="Hard" type="RichTextLabel" parent="Main/TitleMenu/AllButtons/HighScores"]
+margin_left = 492.0
+margin_right = 732.0
+margin_bottom = 60.0
+custom_fonts/bold_font = SubResource( 11 )
+custom_fonts/normal_font = SubResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]0 points"
+text = "0 points"
 
 [node name="VariableText" type="RichTextLabel" parent="Main/TitleMenu"]
 margin_left = 35.0
@@ -330,10 +366,13 @@ script = ExtResource( 5 )
 script = ExtResource( 7 )
 fruitSounds = [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 9 ) ]
 
+[connection signal="GetHighScores" from="Main/TitleMenu" to="PlayerData" method="_on_TitleMenu_GetHighScores"]
 [connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="Main/TitleMenu/Baskets" method="_on_TitleMenu_UpdateBasketVisibility"]
 [connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="PlayerData" method="_on_TitleMenu_UpdateBasketVisibility"]
 [connection signal="visibility_changed" from="Main/TitleMenu" to="Main/TitleMenu" method="_on_TitleMenu_visibility_changed"]
 [connection signal="PlaySFX" from="Main/MainGameArea/MainGame" to="AudioStreamPlayer" method="_on_MainGame_PlaySFX"]
 [connection signal="TimeUp" from="Main/MainGameArea/MainGame" to="PlayerData" method="_on_MainGame_TimeUp"]
 [connection signal="PlaySFX" from="Main/ResultScreen" to="AudioStreamPlayer" method="_on_ResultScreen_PlaySFX"]
+[connection signal="UpdateHighScore" from="Main/ResultScreen" to="PlayerData" method="_on_ResultScreen_UpdateHighScore"]
+[connection signal="ShowHighScores" from="PlayerData" to="Main/TitleMenu" method="_on_PlayerData_ShowHighScores"]
 [connection signal="UpdateResultScreen" from="PlayerData" to="Main/ResultScreen" method="_on_PlayerData_UpdateResultScreen"]

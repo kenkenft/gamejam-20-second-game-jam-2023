@@ -1,6 +1,9 @@
 extends Node2D
 
 signal UpdateBasketVisibility
+signal GetHighScores
+
+export var HighScores = []
 
 var variableText
 var basketsCanvas
@@ -43,3 +46,9 @@ func UpdateVariableText(newText, showDefault, difficulty):
 func _on_TitleMenu_visibility_changed():
 	if(self.visible):
 		UpdateVariableText(defaultText, true, 2)
+		emit_signal("GetHighScores")
+
+
+func _on_PlayerData_ShowHighScores(currentHighScores):
+	for i in range(0,currentHighScores.size()):
+		get_node(HighScores[i]).bbcode_text = "[center][b]{0}[/b] points".format([currentHighScores[i]])
