@@ -38,3 +38,7 @@ func UpdateVariableText(newText, showDefault, difficulty):
 		basketsCanvas.set_position(basketsDefaultPos)
 	
 	emit_signal("UpdateBasketVisibility", difficulty)
+
+
+func _on_TitleMenu_visibility_changed():
+	UpdateVariableText(defaultText, true, 2)
