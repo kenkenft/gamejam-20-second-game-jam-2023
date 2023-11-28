@@ -6,20 +6,22 @@ export var menus = [] # Assumes index positions: 0 - TitleScreen; 1 - MainGameAr
 func _ready():
 	menus.append(get_node("Main/TitleMenu"))
 	menus.append(get_node("Main/MainGameArea/MainGame"))
-	#menus.append(get_node("Main/MainGameArea/ResultScreen"))
-	
-	ShowScreen(0)
+	menus.append(get_node("Main/MainGameArea/ResultScreen"))
 	
 	get_node("Main/TitleMenu/AllButtons/Easy").connect("OnDifficultySelected", self, "SetUpGame")
 	get_node("Main/TitleMenu/AllButtons/Medium").connect("OnDifficultySelected", self, "SetUpGame")
 	get_node("Main/TitleMenu/AllButtons/Hard").connect("OnDifficultySelected", self, "SetUpGame")
-
+	
+	get_node("PlayerData").connect("ShowDifferentMenu", self, "ShowMenu")
+	# get_node("node_path_to_ResultScreen_buttons").connect("ShowDifferentMenu", self, "ShowMenu")
+	
+	ShowMenu(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func ShowScreen(menuId):
+func ShowMenu(menuId):
 	var detectedMenus = menus.size()
 	if(menuId < detectedMenus):
 		for i in range(0, detectedMenus):
@@ -30,7 +32,7 @@ func ShowScreen(menuId):
 
 func SetUpGame(difficulty):
 	#print("Difficulty selected!")
-	ShowScreen(1)
+	ShowMenu(1)
 	menus[1].selectedDifficulty = difficulty
 	menus[1].SetUp()
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/Fruit-v2.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/ResultScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/PlayerData.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/GameManager.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/AudioManager.gd" type="Script" id=7]
@@ -319,6 +320,8 @@ hframes = 7
 
 [node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
 
+[node name="ResultScreen" parent="Main" instance=ExtResource( 4 )]
+
 [node name="PlayerData" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
@@ -327,6 +330,8 @@ script = ExtResource( 7 )
 fruitSounds = [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 9 ) ]
 
 [connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="Main/TitleMenu/Baskets" method="_on_TitleMenu_UpdateBasketVisibility"]
+[connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="PlayerData" method="_on_TitleMenu_UpdateBasketVisibility"]
 [connection signal="PlaySFX" from="Main/MainGameArea/MainGame" to="AudioStreamPlayer" method="_on_MainGame_PlaySFX"]
 [connection signal="TimeUp" from="Main/MainGameArea/MainGame" to="PlayerData" method="_on_MainGame_TimeUp"]
-[connection signal="PlaySFX" from="PlayerData" to="AudioStreamPlayer" method="_on_PlayerData_PlaySFX"]
+[connection signal="PlaySFX" from="Main/ResultScreen" to="AudioStreamPlayer" method="_on_ResultScreen_PlaySFX"]
+[connection signal="UpdateResultScreen" from="PlayerData" to="Main/ResultScreen" method="_on_PlayerData_UpdateResultScreen"]

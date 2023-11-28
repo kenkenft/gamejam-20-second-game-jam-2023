@@ -124,11 +124,6 @@ func IncreaseCombo():
 	if(longestCombo < currentCombo):
 		longestCombo = currentCombo
 
-func _on_Timer_timeout():
-	isPlaying = false
-	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits)
-	#ToDo EndGame function
-
 func SelectNewFruitChord(currentFruitId):
 	var newFruitId
 	var potentialProgressions = []
@@ -156,3 +151,8 @@ func SelectNewChordProgression():
 			if(newChordSetId != currentChordSet):
 				currentChordSet = newChordSetId
 				break
+				
+func _on_Timer_timeout():
+	isPlaying = false
+	emit_signal("TimeUp", currentScore, highestMultiplier, longestCombo, mistakesCount, sortedFruits, multiplierLimits[selectedDifficulty])
+	#ToDo EndGame function
