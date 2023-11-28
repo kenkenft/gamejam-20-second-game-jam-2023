@@ -459,10 +459,8 @@ text = "H"
 script = ExtResource( 8 )
 Baskets = [ NodePath("CanvasLayer/CrateApple"), NodePath("CanvasLayer/CrateBanana"), NodePath("CanvasLayer/CrateCherry"), NodePath("CanvasLayer/CrateDurian"), NodePath("CanvasLayer/CrateEgusi"), NodePath("CanvasLayer/CrateFig"), NodePath("CanvasLayer/CrateGrapefruit") ]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Baskets3"]
-layer = 9
-offset = Vector2( 512, 380 )
-transform = Transform2D( 1, 0, 0, 1, 512, 380 )
+[node name="CanvasLayer" type="Node2D" parent="Baskets3"]
+position = Vector2( 512, 380 )
 
 [node name="CrateFig" type="Node2D" parent="Baskets3/CanvasLayer"]
 position = Vector2( 0, 30 )

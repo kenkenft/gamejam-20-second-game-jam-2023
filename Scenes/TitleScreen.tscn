@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
@@ -15,33 +15,36 @@
 [ext_resource path="res://Audio/SFX/mutedGuitar-C.wav" type="AudioStream" id=13]
 [ext_resource path="res://Audio/SFX/mutedGuitar-B.wav" type="AudioStream" id=14]
 [ext_resource path="res://Audio/SFX/mutedGuitar-F.wav" type="AudioStream" id=15]
+[ext_resource path="res://Scenes/DifficultySelection.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Sprites/Basket.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/TitleMenu.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Baskets.gd" type="Script" id=19]
+[ext_resource path="res://Fonts/ARIALBD.TTF" type="DynamicFontData" id=20]
+[ext_resource path="res://Scenes/CurrentFruit.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFont" id=4]
 size = 72
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
-size = 30
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 30
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFont" id=11]
+size = 20
+font_data = ExtResource( 20 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 20 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 20
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 48
-font_data = ExtResource( 2 )
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 20 )
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource( 6 )
@@ -51,323 +54,275 @@ margin_right = 40.0
 margin_bottom = 40.0
 theme = ExtResource( 4 )
 
-[node name="Title" type="RichTextLabel" parent="Main"]
-visible = false
+[node name="TitleMenu" type="Control" parent="Main"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 18 )
+
+[node name="Title" type="RichTextLabel" parent="Main/TitleMenu"]
 margin_left = 196.0
 margin_top = 9.0
 margin_right = 834.0
-margin_bottom = 216.0
+margin_bottom = 102.0
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Sonata of Sorting"
 text = "Sonata of Sorting"
 
-[node name="MainMenu" type="Control" parent="Main"]
-visible = false
+[node name="AllButtons" type="Control" parent="Main/TitleMenu"]
+margin_top = 120.0
 margin_right = 40.0
-margin_bottom = 40.0
+margin_bottom = 160.0
 
-[node name="Start" type="Button" parent="Main/MainMenu"]
-margin_left = 400.0
-margin_top = 186.0
-margin_right = 600.0
-margin_bottom = 246.0
-custom_fonts/font = SubResource( 1 )
-text = "Start"
+[node name="Easy" parent="Main/TitleMenu/AllButtons" instance=ExtResource( 16 )]
+margin_left = 196.0
+margin_right = 196.0
 
-[node name="HowToPlay" type="Button" parent="Main/MainMenu"]
-margin_left = 400.0
-margin_top = 343.0
-margin_right = 600.0
-margin_bottom = 403.0
-custom_fonts/font = SubResource( 2 )
-text = "How to Play"
+[node name="Medium" parent="Main/TitleMenu/AllButtons" instance=ExtResource( 16 )]
+margin_left = 452.0
+margin_right = 452.0
+difficulty = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Main/MainMenu"]
+[node name="Hard" parent="Main/TitleMenu/AllButtons" instance=ExtResource( 16 )]
+margin_left = 708.0
+margin_right = 708.0
+difficulty = 2
+
+[node name="VariableText" type="RichTextLabel" parent="Main/TitleMenu"]
 margin_left = 35.0
-margin_top = 408.0
+margin_top = 221.0
 margin_right = 988.0
 margin_bottom = 571.0
+custom_fonts/bold_font = SubResource( 11 )
 custom_fonts/normal_font = SubResource( 7 )
-text = "Credits
-Software used: Godot 3.5.3; beepbox.co; Pixel Studio
+bbcode_enabled = true
+bbcode_text = "[u][b]Instructions[/b][/u]
+Sort as many fruits that appear in the center of the screen into their respective crates within 20 seconds.
 
+[u][b]Controls[/b][/u]
+[b]Sort fruit:[/b] W, A, D, Space, I, J, L
+
+[u][b]Tips[/b][/u]
+The fruits and corresponding keys never change.
+Correct consecutive sorting increases the scoring multiplier.
+
+[u][b]Credits[/b][/u]
+Software used: Godot 3.5.3; beepbox.co; Pixel Studio
+Code and artwork by Ken Tang"
+text = "Instructions
+Sort as many fruits that appear in the center of the screen into their respective crates within 20 seconds.
+
+Controls
+Sort fruit: W, A, D, Space, I, J, L
+
+Tips
+The fruits and corresponding keys never change.
+Correct consecutive sorting increases the scoring multiplier.
+
+Credits
+Software used: Godot 3.5.3; beepbox.co; Pixel Studio
 Code and artwork by Ken Tang"
 
-[node name="DifficultySelect" type="Control" parent="Main"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Baskets" type="Node2D" parent="Main/TitleMenu"]
+script = ExtResource( 19 )
+Baskets = [ NodePath("CanvasLayer/CrateApple"), NodePath("CanvasLayer/CrateBanana"), NodePath("CanvasLayer/CrateCherry"), NodePath("CanvasLayer/CrateDurian"), NodePath("CanvasLayer/CrateEgusi"), NodePath("CanvasLayer/CrateFig"), NodePath("CanvasLayer/CrateGrapefruit") ]
 
-[node name="Easy" type="Button" parent="Main/DifficultySelect"]
-margin_left = 136.0
-margin_top = 182.0
-margin_right = 260.0
-margin_bottom = 234.0
-custom_fonts/font = SubResource( 1 )
-text = "Easy"
+[node name="CanvasLayer" type="Node2D" parent="Main/TitleMenu/Baskets"]
+position = Vector2( 768, 440 )
+scale = Vector2( 0.5, 0.5 )
 
-[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Easy"]
-margin_left = -13.0
-margin_top = 60.0
-margin_right = 133.0
-margin_bottom = 110.0
-custom_fonts/normal_font = SubResource( 3 )
-text = "Max fruits: 3
-Max multiplier: 4x"
+[node name="CrateFig" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( 0, 30 )
 
-[node name="Medium" type="Button" parent="Main/DifficultySelect"]
-margin_left = 355.0
-margin_top = 182.0
-margin_right = 479.0
-margin_bottom = 234.0
-custom_fonts/font = SubResource( 1 )
-text = "Medium"
-
-[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Medium"]
-margin_left = -13.0
-margin_top = 60.0
-margin_right = 133.0
-margin_bottom = 110.0
-custom_fonts/normal_font = SubResource( 3 )
-text = "Max fruits: 5
-Max multiplier: 8x"
-
-[node name="Hard" type="Button" parent="Main/DifficultySelect"]
-margin_left = 618.0
-margin_top = 182.0
-margin_right = 742.0
-margin_bottom = 234.0
-custom_fonts/font = SubResource( 1 )
-text = "Hard"
-
-[node name="DifficultyText" type="RichTextLabel" parent="Main/DifficultySelect/Hard"]
-margin_left = -13.0
-margin_top = 60.0
-margin_right = 133.0
-margin_bottom = 110.0
-custom_fonts/normal_font = SubResource( 3 )
-text = "Max fruits: 7
-Max multiplier: 12x"
-
-[node name="Back" type="Button" parent="Main/DifficultySelect"]
-margin_left = 443.0
-margin_top = 521.0
-margin_right = 567.0
-margin_bottom = 573.0
-custom_fonts/font = SubResource( 1 )
-text = "Back"
-
-[node name="HowToPlay" type="Control" parent="Main"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Back" type="Button" parent="Main/HowToPlay"]
-margin_left = 460.0
-margin_top = 519.0
-margin_right = 584.0
-margin_bottom = 571.0
-custom_fonts/font = SubResource( 1 )
-text = "Back"
-
-[node name="Fruit and keys" type="Node" parent="Main/HowToPlay"]
-
-[node name="InstructionsObjective" type="RichTextLabel" parent="Main/HowToPlay"]
-margin_left = 40.0
-margin_top = 100.0
-margin_right = 340.0
-margin_bottom = 318.0
-custom_fonts/normal_font = SubResource( 6 )
-text = "Objective:
-For 20 seconds, fruits will appear on screen.
-
-Sort as many fruits as you can within 20 seconds."
-
-[node name="InstructionsControls" type="RichTextLabel" parent="Main/HowToPlay"]
-margin_left = 360.0
-margin_top = 100.0
-margin_right = 660.0
-margin_bottom = 318.0
-custom_fonts/normal_font = SubResource( 6 )
-text = "Controls:
-When a fruit appears, press the corresponding key to sort the fruit.
-
-The fruit and key will always be the same."
-
-[node name="InstructionsOther" type="RichTextLabel" parent="Main/HowToPlay"]
-margin_left = 680.0
-margin_top = 100.0
-margin_right = 980.0
-margin_bottom = 318.0
-custom_fonts/normal_font = SubResource( 6 )
-text = "Tips:
-Correctly sorting fruits builds up a scoring bonus multiplier. Mistakes reset the scoring multiplier.
-
-The scoring multiplier is limited by difficulty.
-
-"
-
-[node name="AllFruit" type="Node2D" parent="Main/HowToPlay"]
-position = Vector2( 512, 350 )
-
-[node name="TopRow" type="Node2D" parent="Main/HowToPlay/AllFruit"]
-
-[node name="Banana" type="Node2D" parent="Main/HowToPlay/AllFruit/TopRow"]
-position = Vector2( -360, 0 )
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/TopRow/Banana"]
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateFig"]
+position = Vector2( 0, -60 )
 scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
-hframes = 7
-frame = 1
-
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/TopRow/Banana"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]S"
-text = "S"
-
-[node name="Cherry" type="Node2D" parent="Main/HowToPlay/AllFruit/TopRow"]
-position = Vector2( -120, 0 )
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/TopRow/Cherry"]
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
-hframes = 7
-frame = 2
-
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/TopRow/Cherry"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]F"
-text = "F"
-
-[node name="Grapefruit" type="Node2D" parent="Main/HowToPlay/AllFruit/TopRow"]
-position = Vector2( 120, 0 )
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/TopRow/Grapefruit"]
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
-hframes = 7
-frame = 6
-
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/TopRow/Grapefruit"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]J"
-text = "J"
-
-[node name="Apple" type="Node2D" parent="Main/HowToPlay/AllFruit/TopRow"]
-position = Vector2( 360, 0 )
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/TopRow/Apple"]
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
-hframes = 7
-
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/TopRow/Apple"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]L"
-text = "L"
-
-[node name="BottomRow" type="Node2D" parent="Main/HowToPlay/AllFruit"]
-position = Vector2( 0, 60 )
-
-[node name="Durian" type="Node2D" parent="Main/HowToPlay/AllFruit/BottomRow"]
-position = Vector2( -240, 0 )
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/BottomRow/Durian"]
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 3 )
-hframes = 7
-frame = 3
-
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/BottomRow/Durian"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
-bbcode_enabled = true
-bbcode_text = "[center]D"
-text = "D"
-
-[node name="Fig" type="Node2D" parent="Main/HowToPlay/AllFruit/BottomRow"]
-
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/BottomRow/Fig"]
-scale = Vector2( 2.5, 2.5 )
+z_index = 1
 texture = ExtResource( 3 )
 hframes = 7
 frame = 5
 
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/BottomRow/Fig"]
-margin_left = -100.0
-margin_top = 30.0
-margin_right = 97.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateFig"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateFig"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[center]Space"
+bbcode_text = "[center][b]Space"
 text = "Space"
 
-[node name="Egusi" type="Node2D" parent="Main/HowToPlay/AllFruit/BottomRow"]
-position = Vector2( 240, 0 )
+[node name="CrateCherry" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( -140, -130 )
 
-[node name="Fruit" type="Sprite" parent="Main/HowToPlay/AllFruit/BottomRow/Egusi"]
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateCherry"]
+position = Vector2( 0, -60 )
 scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 7
+frame = 2
+
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateCherry"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateCherry"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][b]D"
+text = "D"
+
+[node name="CrateGrapefruit" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( 140, -130 )
+
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateGrapefruit"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 7
+frame = 6
+
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateGrapefruit"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateGrapefruit"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][b]J"
+text = "J"
+
+[node name="CrateDurian" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( -260, -200 )
+
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateDurian"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 7
+frame = 3
+
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateDurian"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateDurian"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][b]W"
+text = "W"
+
+[node name="CrateEgusi" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( 260, -200 )
+
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateEgusi"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
 texture = ExtResource( 3 )
 hframes = 7
 frame = 4
 
-[node name="Key" type="RichTextLabel" parent="Main/HowToPlay/AllFruit/BottomRow/Egusi"]
-anchor_right = 0.441
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 37.0
-margin_bottom = 118.0
-rect_clip_content = false
-theme = ExtResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateEgusi"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateEgusi"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[center]K"
-text = "K"
+bbcode_text = "[center][b]I"
+text = "I"
+
+[node name="CrateBanana" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( -380, -130 )
+
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateBanana"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 7
+frame = 1
+
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateBanana"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateBanana"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][b]A"
+text = "A"
+
+[node name="CrateApple" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( 380, -130 )
+
+[node name="Fruit" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateApple"]
+position = Vector2( 0, -60 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 7
+
+[node name="Crate" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateApple"]
+scale = Vector2( 5, 5 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="Letter" type="RichTextLabel" parent="Main/TitleMenu/Baskets/CanvasLayer/CrateApple"]
+margin_left = -60.0
+margin_right = 60.0
+margin_bottom = 40.0
+custom_fonts/bold_font = SubResource( 10 )
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][b]L"
+text = "L"
+
+[node name="CurrentFruit" type="Node2D" parent="Main/TitleMenu/Baskets/CanvasLayer"]
+position = Vector2( 0, -150 )
+script = ExtResource( 21 )
+
+[node name="FruitSprite" type="Sprite" parent="Main/TitleMenu/Baskets/CanvasLayer/CurrentFruit"]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+hframes = 7
 
 [node name="MainGameArea" type="Node2D" parent="Main"]
+visible = false
 
 [node name="MainGame" parent="Main/MainGameArea" instance=ExtResource( 1 )]
 
@@ -378,6 +333,7 @@ script = ExtResource( 5 )
 script = ExtResource( 7 )
 fruitSounds = [ ExtResource( 12 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 9 ) ]
 
+[connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="Main/TitleMenu/Baskets" method="_on_TitleMenu_UpdateBasketVisibility"]
 [connection signal="PlaySFX" from="Main/MainGameArea/MainGame" to="AudioStreamPlayer" method="_on_MainGame_PlaySFX"]
 [connection signal="TimeUp" from="Main/MainGameArea/MainGame" to="PlayerData" method="_on_MainGame_TimeUp"]
 [connection signal="PlaySFX" from="PlayerData" to="AudioStreamPlayer" method="_on_PlayerData_PlaySFX"]

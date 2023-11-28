@@ -51,7 +51,6 @@ func _ready():
 	SetUp()
 
 #ToDo Function that is called to set selectedDifficulty
-#ToDo Generate next fruit (based on chord progression and available fruits) 
 
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
