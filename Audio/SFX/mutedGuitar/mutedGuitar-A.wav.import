@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mutedGuitar-B.wav-549b983863ade57a2fa549486dc0fecf.sample"
+path="res://.import/mutedGuitar-A.wav-881aa8d7f5f5a89dcc84f50d60457171.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/mutedGuitar-B.wav"
-dest_files=[ "res://.import/mutedGuitar-B.wav-549b983863ade57a2fa549486dc0fecf.sample" ]
+source_file="res://Audio/SFX/mutedGuitar/mutedGuitar-A.wav"
+dest_files=[ "res://.import/mutedGuitar-A.wav-881aa8d7f5f5a89dcc84f50d60457171.sample" ]
 
 [params]
 

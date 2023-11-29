@@ -55,10 +55,12 @@ func _on_PlaySong_pressed():
 
 
 func _on_Replay_pressed():
+	emit_signal("PlaySFX", 8)
 	get_node(GameManager).SetUpGame(difficulty)
 
 
 func _on_TitleScreen_pressed():
+	emit_signal("PlaySFX", 8)
 	emit_signal("ShowDifferentMenu", 0)
 
 func SetBonusCombo(comboLength):

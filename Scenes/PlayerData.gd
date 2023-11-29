@@ -8,13 +8,6 @@ signal IndicateNewestHighScore
 var highScores = [0, 0, 0]
 var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
 var selectedDifficulty = 0
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func _on_TitleMenu_UpdateBasketVisibility(difficulty):
 	selectedDifficulty = difficulty

@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/electricPiano2-A.wav-fa7ab11de6c043196f22a2a0ce8ab4c1.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/electricPiano2/electricPiano2-A.wav"
+dest_files=[ "res://.import/electricPiano2-A.wav-fa7ab11de6c043196f22a2a0ce8ab4c1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/mutedGuitar-F.wav-5c34bf28c1a172a502d71a32b5b4cef0.sample"
+path="res://.import/electricPiano2-F.wav-2e41c22fa7f276b5179b5b52bf314034.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/mutedGuitar-F.wav"
-dest_files=[ "res://.import/mutedGuitar-F.wav-5c34bf28c1a172a502d71a32b5b4cef0.sample" ]
+source_file="res://Audio/SFX/electricPiano2/electricPiano2-F.wav"
+dest_files=[ "res://.import/electricPiano2-F.wav-2e41c22fa7f276b5179b5b52bf314034.sample" ]
 
 [params]
 
