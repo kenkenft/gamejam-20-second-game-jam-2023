@@ -3,17 +3,21 @@ extends Control
 var scoreText 
 var timerText
 var multiplierText 
+var countdownText
 var currentTimer
 
 func SetUp():
 	scoreText = get_node("Score")
-	scoreText.text = "Score: 0"
+	scoreText.bbcode_text = "Score: 0"
 	
 	timerText = get_node("Timer")
-	timerText.text = "Time Left: 20.0"
+	timerText.bbcode_text = "Time Left: 20.0"
 	
 	multiplierText = get_node("Multiplier")
-	multiplierText.text = "x1"
+	multiplierText.bbcode_text = "[right]x1"
+	
+	countdownText = get_node("Countdown")
+	countdownText.bbcode_text = "[center]3"
 	
 	currentTimer = get_node("../Timer")
 	#print(currentTimer.get_time_left())
@@ -27,6 +31,7 @@ func _process(_delta):
 
 func UpdateText(var newText, var targetNode):
 	match targetNode:
-		"Score": scoreText.text = "Score: " + newText
-		"Timer": timerText.text = "Time Left: " + newText
-		"Multiplier": multiplierText.text = "x" + newText
+		"Score": scoreText.bbcode_text = "Score: " + newText
+		"Timer": timerText.bbcode_text = "Time Left: " + newText
+		"Multiplier": multiplierText.bbcode_text = "[right]x" + newText
+		"Countdown": countdownText.bbcode_text = "[center]" + newText

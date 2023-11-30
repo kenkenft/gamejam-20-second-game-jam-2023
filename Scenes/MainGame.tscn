@@ -46,13 +46,27 @@ margin_top = 503.0
 margin_right = 599.0
 margin_bottom = 603.0
 custom_fonts/normal_font = SubResource( 2 )
-text = "Score:"
+bbcode_enabled = true
+bbcode_text = "Score: 0"
+text = "Score: 0"
 
 [node name="Timer" type="RichTextLabel" parent="PlayerUI"]
 margin_right = 400.0
 margin_bottom = 100.0
 custom_fonts/normal_font = SubResource( 3 )
-text = "Time Left: 0"
+bbcode_enabled = true
+bbcode_text = "Time Left: 20.0"
+text = "Time Left: 20.0"
+
+[node name="Countdown" type="RichTextLabel" parent="PlayerUI"]
+margin_left = 315.0
+margin_top = 122.0
+margin_right = 715.0
+margin_bottom = 222.0
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]3"
+text = "3"
 
 [node name="Multiplier" type="RichTextLabel" parent="PlayerUI"]
 margin_left = 677.0
@@ -60,7 +74,9 @@ margin_top = 497.0
 margin_right = 1020.0
 margin_bottom = 597.0
 custom_fonts/normal_font = SubResource( 1 )
-text = "Multiplier: x1"
+bbcode_enabled = true
+bbcode_text = "[right]x1"
+text = "x1"
 
 [node name="Baskets" type="Node2D" parent="."]
 visible = false

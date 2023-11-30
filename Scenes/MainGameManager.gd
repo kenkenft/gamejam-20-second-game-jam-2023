@@ -45,6 +45,7 @@ var currentChordSet
 var currentChordInSet = 0
 
 var sortedFruits = []
+var timeToWait
 
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
@@ -58,16 +59,52 @@ func SetUp():
 	GetNodesRefs()
 	ResetValues()
 	SetUpStartingFruit()
-	WaitForFewSeconds(1.75)
-	
 	playerUI.SetUp()
-
-func WaitForFewSeconds(timeToWait):
-	var t = timeToWait
-	while(t > 0):
-		yield(get_tree().create_timer(0.25), "timeout")
-		t -=0.25
+	WaitForFewSeconds(1.75)
+	#Countdown(1.75)
+	
+	
+func WaitForFewSeconds(time):
+	var counter = int(time / 0.25)
+	playerUI.countdownText.set_visible(true)
+	timeToWait = time
+	for i in range(0, 3):
+		#print("Timer {0}".format([i]))
+		yield(get_tree().create_timer(0.5), "timeout")
+		timeToWait -= 0.5
+		#print("WaitForFewSeconds {0}: {1}".format([i, timeToWait]))
+		if(timeToWait > 1.45):
+			playerUI.UpdateText("3", "Countdown")
+		elif(timeToWait <= 1.45 && timeToWait > 0.95):
+			playerUI.UpdateText("2", "Countdown")
+		elif(timeToWait <= 0.95 && timeToWait > 0.45):
+			playerUI.UpdateText("1", "Countdown")
+		else:
+			playerUI.UpdateText("GO!", "Countdown")
 	currentTimer.start(levelTime)
+	#playerUI.SetUp()
+	isPlaying = true
+	isCheckingInput = false
+	playerUI.countdownText.set_visible(false)
+	
+
+func Countdown(time):
+	timeToWait = time
+	while(timeToWait > 0):
+		if(timeToWait > 1.25):
+			#playerUI.UpdateText("3", "Countdown")
+			print(3)
+		if(timeToWait <= 1.25 && timeToWait > 0.75):
+			#playerUI.UpdateText("2", "Countdown")
+			print(2)
+		elif(timeToWait <= 0.75 && timeToWait > 0.25):
+			#playerUI.UpdateText("1", "Countdown")
+			print(1)
+		else:
+			#playerUI.UpdateText("GO!", "Countdown")
+			print("GO!")
+			#playerUI.countdownText.set_visible(false)
+	
 
 func ResetValues():
 	multiplierMax = multiplierLimits[selectedDifficulty]
@@ -79,8 +116,7 @@ func ResetValues():
 	longestCombo = 0
 	currentChordInSet = 0
 	sortedFruits.clear()
-	isPlaying = true
-	isCheckingInput = false
+	
 
 func GetNodesRefs():
 	playerUI = get_node("PlayerUI")
