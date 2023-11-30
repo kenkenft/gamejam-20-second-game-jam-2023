@@ -56,7 +56,7 @@ func PlaySong():
 			yield(get_tree().create_timer(0.5), "timeout")
 		else:
 			#PlayAfterFewSeconds(0.25, i)
-			yield(get_tree().create_timer(0.25), "timeout")
+			yield(get_tree().create_timer(0.2), "timeout")
 		emit_signal("PlaySFX", fruits[i])
 		
 

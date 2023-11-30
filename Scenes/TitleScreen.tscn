@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Audio/BGM/BGM-Title5.wav" type="AudioStream" id=30]
 [ext_resource path="res://Audio/BGM/BGM-Title6.wav" type="AudioStream" id=31]
 [ext_resource path="res://Audio/BGM/BGM-Title4.wav" type="AudioStream" id=32]
+[ext_resource path="res://Scenes/Screenshots.tscn" type="PackedScene" id=33]
 
 [sub_resource type="DynamicFont" id=4]
 size = 72
@@ -61,6 +62,7 @@ font_data = ExtResource( 20 )
 script = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]
+visible = false
 
 [node name="TitleMenu" type="Node2D" parent="Main"]
 script = ExtResource( 18 )
@@ -383,6 +385,7 @@ hframes = 7
 GameManager = NodePath("../..")
 
 [node name="PlayerData" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 5 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
@@ -394,6 +397,8 @@ BackgroundTrackTitle = [ ExtResource( 28 ), ExtResource( 29 ), ExtResource( 27 )
 volume_db = 5.313
 script = ExtResource( 7 )
 fruitSounds = [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 22 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 14 ) ]
+
+[node name="Node2D" parent="." instance=ExtResource( 33 )]
 
 [connection signal="GetHighScores" from="Main/TitleMenu" to="PlayerData" method="_on_TitleMenu_GetHighScores"]
 [connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="Main/TitleMenu/Baskets" method="_on_TitleMenu_UpdateBasketVisibility"]
