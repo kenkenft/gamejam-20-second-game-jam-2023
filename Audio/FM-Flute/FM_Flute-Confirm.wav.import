@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FM_Flute-Confirm.wav-1c675c49533a32e7ed543c9694cdff6b.sample"
+
+[deps]
+
+source_file="res://Audio/FM-Flute/FM_Flute-Confirm.wav"
+dest_files=[ "res://.import/FM_Flute-Confirm.wav-1c675c49533a32e7ed543c9694cdff6b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

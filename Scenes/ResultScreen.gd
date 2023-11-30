@@ -1,6 +1,7 @@
 extends Node2D
 
 signal PlaySFX
+signal PlayBGM
 signal UpdateHighScore
 signal ShowDifferentMenu
 
@@ -56,6 +57,7 @@ func _on_PlaySong_pressed():
 
 func _on_Replay_pressed():
 	emit_signal("PlaySFX", 8)
+	emit_signal("PlayBGM", difficulty)
 	get_node(GameManager).SetUpGame(difficulty)
 
 

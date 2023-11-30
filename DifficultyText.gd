@@ -4,6 +4,7 @@ signal OnDifficultyMouseEnter
 signal OnDifficultyMouseExit
 signal OnDifficultySelected
 signal PlaySFX
+signal PlayBGM
 
 export(int) var difficulty # 0 - Easy; 1 - Medium; 2 - Hard
 var expectedFruits = [3, 5, 7] # Easy - 3; Medium - 5; Hard - 7
@@ -28,4 +29,5 @@ func _on_DifficultyText_mouse_exited():
 
 func _on_DifficultyText_pressed():
 	emit_signal("PlaySFX", 8)
+	emit_signal("PlayBGM", difficulty)
 	emit_signal("OnDifficultySelected", difficulty)
