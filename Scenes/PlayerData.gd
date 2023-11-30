@@ -5,7 +5,7 @@ signal UpdateResultScreen
 signal ShowHighScores
 signal IndicateNewestHighScore
 
-var highScores = [0, 0, 0]
+var highScores = [13700, 21750, 27050]
 var idToName = {0: "Apple", 1: "Banana", 2: "Cherry", 3: "Durian", 4: "Egusi", 5: "Fig", 6: "Grapefruit"}
 var selectedDifficulty = 0
 

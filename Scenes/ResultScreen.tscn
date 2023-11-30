@@ -240,6 +240,9 @@ margin_bottom = 60.0
 custom_fonts/font = SubResource( 4 )
 text = "Title Menu"
 
+[node name="Metronome" type="Timer" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/Buttons/Node2D/PlaySong/PlaySong" to="." method="_on_PlaySong_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/Node2D/ReplayCurrent/Replay" to="." method="_on_Replay_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/Node2D/ReturnToTitleScreen/TitleScreen" to="." method="_on_TitleScreen_pressed"]
+[connection signal="timeout" from="Metronome" to="." method="_on_Metronome_timeout"]

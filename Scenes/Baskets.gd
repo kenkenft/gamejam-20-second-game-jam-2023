@@ -7,10 +7,6 @@ var HideWhichBaskets = [[false, false, true, false, false, true, true],
 						[false, false, true, true, true, true, true],
 						[true, true, true, true, true, true, true]] 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 func _on_MainGame_ShowCrateByDifficulty(difficulty):
 	for i in range(0, Baskets.size()):
 		get_node(Baskets[i]).set_visible(HideWhichBaskets[difficulty][i])

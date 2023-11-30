@@ -4,6 +4,7 @@ signal PlaySFX
 signal TimeUp
 signal ShowCrateByDifficulty
 
+var levelTime = 20.0
 var acceptedInputActions = ["gameplay_sort_easy_v3", "gameplay_sort_medium_v3", "gameplay_sort_hard_v3"] # WASD and IJKL scheme. 
 var inputToFruitId = {KEY_L: 0, KEY_A: 1, KEY_D: 2, KEY_W: 3, KEY_I: 4, KEY_SPACE: 5, KEY_J: 6 }# WASD and IJKL scheme.
 
@@ -66,7 +67,7 @@ func WaitForFewSeconds(timeToWait):
 	while(t > 0):
 		yield(get_tree().create_timer(0.25), "timeout")
 		t -=0.25
-	currentTimer.start(20)
+	currentTimer.start(levelTime)
 
 func ResetValues():
 	multiplierMax = multiplierLimits[selectedDifficulty]

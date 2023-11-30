@@ -14,7 +14,7 @@ func _ready():
 	
 	get_node("PlayerData").connect("ShowDifferentMenu", self, "ShowMenu")
 	get_node("Main/ResultScreen").connect("ShowDifferentMenu", self, "ShowMenu")
-	get_node("BGM").PlayBGMTitle()
+	#get_node("BGM").PlayBGMTitle()
 	
 	ShowMenu(0)
 

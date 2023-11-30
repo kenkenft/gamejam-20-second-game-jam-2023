@@ -39,3 +39,7 @@ func _on_BGM_finished():
 func _on_ResultScreen_PlayBGM(difficulty):
 	selectedDifficulty = difficulty
 	PlayBGMLevel(selectedDifficulty)
+
+
+func _on_ResultScreen_PlayBGMTitle():
+	PlayBGMTitle()

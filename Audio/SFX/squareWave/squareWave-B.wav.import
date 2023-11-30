@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/FM_Flute-F.wav-0942dafa60695a418ed5d45ae946b08e.sample"
+path="res://.import/squareWave-B.wav-db32bd46d0692994b5a4552eeab85706.sample"
 
 [deps]
 
-source_file="res://Audio/FM-Flute/FM_Flute-F.wav"
-dest_files=[ "res://.import/FM_Flute-F.wav-0942dafa60695a418ed5d45ae946b08e.sample" ]
+source_file="res://Audio/SFX/squareWave/squareWave-B.wav"
+dest_files=[ "res://.import/squareWave-B.wav-db32bd46d0692994b5a4552eeab85706.sample" ]
 
 [params]
 
