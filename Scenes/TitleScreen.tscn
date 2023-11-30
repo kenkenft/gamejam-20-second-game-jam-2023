@@ -62,7 +62,6 @@ font_data = ExtResource( 20 )
 script = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]
-visible = false
 
 [node name="TitleMenu" type="Node2D" parent="Main"]
 script = ExtResource( 18 )
@@ -399,6 +398,7 @@ script = ExtResource( 7 )
 fruitSounds = [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 22 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 14 ) ]
 
 [node name="Node2D" parent="." instance=ExtResource( 33 )]
+visible = false
 
 [connection signal="GetHighScores" from="Main/TitleMenu" to="PlayerData" method="_on_TitleMenu_GetHighScores"]
 [connection signal="UpdateBasketVisibility" from="Main/TitleMenu" to="Main/TitleMenu/Baskets" method="_on_TitleMenu_UpdateBasketVisibility"]
