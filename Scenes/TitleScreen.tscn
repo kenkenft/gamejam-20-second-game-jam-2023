@@ -22,9 +22,9 @@
 [ext_resource path="res://Fonts/ARIALBD.TTF" type="DynamicFontData" id=20]
 [ext_resource path="res://Scenes/CurrentFruit.gd" type="Script" id=21]
 [ext_resource path="res://Audio/FM-Flute/FM_Flute-D.wav" type="AudioStream" id=22]
-[ext_resource path="res://Audio/BGM/BGM_V2-Easy.wav" type="AudioStream" id=23]
-[ext_resource path="res://Audio/BGM/BGM_V2-Medium.wav" type="AudioStream" id=24]
-[ext_resource path="res://Audio/BGM/BGM_V2-Hard.wav" type="AudioStream" id=25]
+[ext_resource path="res://Audio/BGM/BGM_V3-Easy.wav" type="AudioStream" id=23]
+[ext_resource path="res://Audio/BGM/BGM_V3-Medium.wav" type="AudioStream" id=24]
+[ext_resource path="res://Audio/BGM/BGM_V3-Hard.wav" type="AudioStream" id=25]
 [ext_resource path="res://Scenes/BGM.gd" type="Script" id=26]
 [ext_resource path="res://Audio/BGM/BGM-Title3.wav" type="AudioStream" id=27]
 [ext_resource path="res://Audio/BGM/BGM-Title1.wav" type="AudioStream" id=28]
@@ -73,8 +73,8 @@ margin_right = 834.0
 margin_bottom = 102.0
 custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center]Sonata of Sorting"
-text = "Sonata of Sorting"
+bbcode_text = "[center]Sorting Medley"
+text = "Sorting Medley"
 
 [node name="AllButtons" type="Control" parent="Main/TitleMenu"]
 margin_top = 120.0

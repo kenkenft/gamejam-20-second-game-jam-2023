@@ -57,8 +57,16 @@ func SetUp():
 	GetNodesRefs()
 	ResetValues()
 	SetUpStartingFruit()
-	currentTimer.start(5.0)
+	WaitForFewSeconds(1.75)
+	
 	playerUI.SetUp()
+
+func WaitForFewSeconds(timeToWait):
+	var t = timeToWait
+	while(t > 0):
+		yield(get_tree().create_timer(0.25), "timeout")
+		t -=0.25
+	currentTimer.start(20)
 
 func ResetValues():
 	multiplierMax = multiplierLimits[selectedDifficulty]
