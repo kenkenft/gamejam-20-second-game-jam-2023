@@ -93,9 +93,9 @@ bbcode_text = "[b]0"
 text = "0"
 
 [node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Combo"]
-margin_left = 650.0
+margin_left = 640.0
 margin_top = 20.0
-margin_right = 950.0
+margin_right = 940.0
 margin_bottom = 60.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -127,9 +127,9 @@ bbcode_text = "[b]0"
 text = "0"
 
 [node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Multiplier"]
-margin_left = 650.0
+margin_left = 640.0
 margin_top = 20.0
-margin_right = 950.0
+margin_right = 940.0
 margin_bottom = 60.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -161,9 +161,9 @@ bbcode_text = "[b]0"
 text = "0"
 
 [node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/Mistakes"]
-margin_left = 650.0
+margin_left = 640.0
 margin_top = 20.0
-margin_right = 950.0
+margin_right = 940.0
 margin_bottom = 60.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
@@ -195,9 +195,9 @@ bbcode_text = "[b]0"
 text = "0"
 
 [node name="Bonus" type="RichTextLabel" parent="CanvasLayer/Text/Results/FinalScore"]
-margin_left = 650.0
+margin_left = 640.0
 margin_top = 20.0
-margin_right = 950.0
+margin_right = 940.0
 margin_bottom = 60.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )

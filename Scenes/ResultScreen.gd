@@ -20,6 +20,8 @@ var WaitTimeLeft = 0
 var isWaiting = false
 var metronome
 
+# resultData = [currentScore, longestCombo, highestMultiplier, 
+#				mistakesCount, selectedDifficulty, multiplierLimits]
 func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	SetUp()
 	
@@ -32,7 +34,7 @@ func _on_PlayerData_UpdateResultScreen(resultData, sortedFruits):
 	PlaySong()
 	
 	get_node(DynamicText[0]).bbcode_text = "[b]{0} points[/b]".format([resultData[0]])	# Initial score
-	SetBonusCombo(resultData[1])
+	SetBonusCombo(resultData[1], resultData[3])
 	SetBonusMultiplier(resultData[2])
 	SetBonusMistakes(resultData[3], resultData[5])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b] points".format([finalScore]) # Final score after bonuses/penalties
@@ -99,10 +101,6 @@ func StopWaiting():
 	print("StopWaiting() called")
 	isWaiting = false
 
-# resultData = [currentScore, longestCombo, highestMultiplier, 
-#				mistakesCount, selectedDifficulty, multiplierLimits]
-
-
 func _on_Metronome_timeout():
 	print("_on_Metronome_timeout() called")
 	emit_signal("WaitOver")
@@ -120,15 +118,18 @@ func _on_TitleScreen_pressed():
 	emit_signal("PlaySFX", 8)
 	emit_signal("ShowDifferentMenu", 0)
 
-func SetBonusCombo(comboLength):
+func SetBonusCombo(comboLength, mistakesMade):
 	var comboBonus = comboLength * 50
 	finalScore += comboBonus
 	get_node(DynamicText[1]).bbcode_text = "[b]{0}[/b]".format([comboLength])	# Longest combo
 	get_node(BonusText[0]).visible = true
 	if(comboLength >= 1):
-		get_node(BonusText[0]).bbcode_text = "[b][color=#18EE00]+{0}[/color][/b] points!".format([comboBonus])
-	else:
+		get_node(BonusText[0]).bbcode_text = "[b][color=#18EE00]+{0} points![/color][/b]".format([comboBonus])
+	elif(comboLength < 1 && mistakesMade == 0):
 		get_node(BonusText[0]).bbcode_text = "[b][color=#EF0000]You did nothing![/color][/b]".format([comboBonus])
+	else:
+		get_node(BonusText[0]).bbcode_text = "[b][color=#EF0000]Oh dear![/color][/b]".format([comboBonus])
+	
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
 
 func SetBonusMultiplier(maxMultiplierAchieved):
@@ -138,7 +139,7 @@ func SetBonusMultiplier(maxMultiplierAchieved):
 	get_node(BonusText[1]).visible = true
 	if(maxMultiplierAchieved > 1):
 		finalScore += bonus
-		get_node(BonusText[1]).bbcode_text = "[b][color=#18EE00]+{0}[/color][/b] points!".format([bonus])
+		get_node(BonusText[1]).bbcode_text = "[b][color=#18EE00]+{0} points![/color][/b]".format([bonus])
 	else:
 		get_node(BonusText[1]).bbcode_text = "[b][color=#EF0000]No bonus![/color][/b]".format([bonus])
 	get_node(DynamicText[4]).bbcode_text = "[b]{0}[/b]".format([finalScore]) # Final score after bonuses/penalties
@@ -150,10 +151,10 @@ func SetBonusMistakes(mistakesMade, multiplierBonus):
 		bonusText = "[b][color=#EF0000]Didn't even try![/color][/b]"
 	elif(mistakesMade == 0):
 		modifier = multiplierBonus * 100
-		bonusText = "[b][color=#18EE00]+{0}[/color][/b] points!"
+		bonusText = "[b][color=#18EE00]+{0} points![/color][/b]"
 	else:
 		modifier = mistakesMade * -100
-		bonusText = "[b][color=#EF0000]{0}[/color][/b] points!"
+		bonusText = "[b][color=#EF0000]{0} points![/color][/b]"
 		
 	finalScore += modifier
 	

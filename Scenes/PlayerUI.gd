@@ -4,6 +4,7 @@ var scoreText
 var timerText
 var multiplierText 
 var countdownText
+var wrongMarker
 var currentTimer
 
 func SetUp():
@@ -18,6 +19,9 @@ func SetUp():
 	
 	countdownText = get_node("Countdown")
 	countdownText.bbcode_text = "[center]3"
+	
+	wrongMarker = get_node("Wrong")
+	wrongMarker.set_visible(false)
 	
 	currentTimer = get_node("../Timer")
 	#print(currentTimer.get_time_left())

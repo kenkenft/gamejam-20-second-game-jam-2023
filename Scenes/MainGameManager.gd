@@ -46,6 +46,7 @@ var currentChordInSet = 0
 
 var sortedFruits = []
 var timeToWait
+var yieldObject
 
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
@@ -150,11 +151,23 @@ func SetUpCorrectFruit(fruitId):
 	CurrentFruitObject.SetNewFruit(newFruitId)
 
 func SetUpIncorrectFruit():
+#	if(yieldObject != null):
+#		yieldObject.start(0.5)
+#	else:
+#		yieldObject = HideMarker()
+	
 	currentMultiplier = 1
 	mistakesCount += 1
 	currentCombo = 0
 	emit_signal("PlaySFX", 7)
 
+func HideMarker():
+	playerUI.wrongMarker.set_visible(true)
+	var isWrongAgain = yield(get_tree().create_timer(0.5), "timeout")
+	
+	#if(isWrongAgain != null):
+	playerUI.wrongMarker.set_visible(false)
+	
 func IncreaseMultiplier():
 	if(currentMultiplier < multiplierMax):
 		currentMultiplier += 1

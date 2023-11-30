@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/Fruit-v2.png" type="Texture" id=2]
@@ -16,6 +16,10 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=3]
 size = 52
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 84
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 52
@@ -67,6 +71,17 @@ custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]3"
 text = "3"
+
+[node name="Wrong" type="RichTextLabel" parent="PlayerUI"]
+margin_left = 315.0
+margin_top = 122.0
+margin_right = 715.0
+margin_bottom = 222.0
+custom_fonts/bold_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center][color=#EF0000][b]X[/b][/color]"
+text = "X"
 
 [node name="Multiplier" type="RichTextLabel" parent="PlayerUI"]
 margin_left = 677.0
@@ -667,6 +682,8 @@ script = ExtResource( 7 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
 hframes = 7
+
+[node name="WrongTimer" type="Timer" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
