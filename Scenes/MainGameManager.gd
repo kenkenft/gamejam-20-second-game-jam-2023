@@ -51,7 +51,7 @@ var yieldObject
 func _input(event):
 	if (isPlaying && !isCheckingInput && event.is_action_pressed(acceptedInputActions[selectedDifficulty])):
 		isCheckingInput = true
-		CompareKeyToFruit(event.scancode)
+		CompareKeyToFruit(event.physical_scancode)
 		#yield(get_tree().create_timer(0.10), "timeout")
 		isCheckingInput = false
 
